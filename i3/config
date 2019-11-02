@@ -67,7 +67,7 @@ bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart du
 bindsym Print exec --no-startup-id i3-scrot
 bindsym $mod+Print --release exec --no-startup-id i3-scrot -w
 bindsym $mod+Shift+Print --release exec --no-startup-id i3-scrot -s
-bindsym $mod+Shift+h exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
+bindsym $mod+Shift+m exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
 # focus_follows_mouse no
@@ -102,7 +102,7 @@ bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientation
-bindsym $mod+h split h;exec notify-send 'tile horizontally'
+bindsym $mod+g split g;exec notify-send 'tile horizontally'
 bindsym $mod+v split v;exec notify-send 'tile vertically'
 bindsym $mod+q split toggle
 
@@ -195,7 +195,7 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 # Open applications on specific workspaces
 assign [class="Spotify"] $ws8
 assign [class="google-chrome"] $ws3
-assign [class="URxvt"] $ws1
+#assign [class="URxvt"] $ws1
 # assign [class="Pale moon"] $ws2
 # assign [class="Pcmanfm"] $ws3
 # assign [class="Skype"] $ws5
@@ -430,11 +430,17 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+
+# move focused workspace between monitors
+bindsym $mod+Ctrl+greater move workspace to output right
+bindsym $mod+Ctrl+less move workspace to output left
+
 # Default programs
+exec redshift
 exec /usr/bin/spotify
 for_window [class="Spotify"] move window to workspace $ws8
 exec google-chrome-stable
 exec terminal
-for_window [class="URxvt"] move window to workspace $ws1
+#for_window [class="URxvt"] move window to workspace $ws1
 exec discord
 for_window [class="discord"] move window to workspace $ws7

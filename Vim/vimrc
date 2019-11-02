@@ -30,7 +30,12 @@ set matchpairs+=<:>
 set number
 set exrc 
 set secure
-set colorcolumn=200 
+set colorcolumn=200
+set syntax
+nnoremap j h
+nnoremap k j
+nnoremap l k
+nnoremap ; l
 highlight ColorColumn ctermbg=darkgrey
 
 " If you prefer the old-style vim functionalty, add 'runtime! vimrc_example.vim'
