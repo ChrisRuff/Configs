@@ -27,8 +27,8 @@ font xft:URWGothic-Book 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminal
-
+bindsym $mod+Return exec ~/.i3/i3_shell.sh
+bindsym $mod+Shift+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -102,7 +102,7 @@ bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientation
-bindsym $mod+g split g;exec notify-send 'tile horizontally'
+bindsym $mod+h split h;exec notify-send 'tile horizontally'
 bindsym $mod+v split v;exec notify-send 'tile vertically'
 bindsym $mod+q split toggle
 
@@ -442,5 +442,4 @@ for_window [class="Spotify"] move window to workspace $ws8
 exec google-chrome-stable
 exec terminal
 #for_window [class="URxvt"] move window to workspace $ws1
-exec discord
 for_window [class="discord"] move window to workspace $ws7
