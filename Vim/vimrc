@@ -52,6 +52,7 @@ vnoremap j h
 vnoremap k j
 vnoremap l k
 vnoremap ; l
+highlight ColorColumn ctermbg=darkgrey
 
 " Auto complete braces
 inoremap " ""<left>
