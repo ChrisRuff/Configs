@@ -16,7 +16,11 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+Plugin 'tpope/vim-fugitive'
 Plugin 'VundleVim/Vundle.vim'
+
+"OCTAVE"
+Plugin 'jvirtanen/vim-octave'
 Plugin 'Valloric/YouCompleteMe'
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
 let g:ycm_show_diagnostics_ui = 0
@@ -29,6 +33,7 @@ let g:syntastic_cpp_ccomipler_options = '-std=c++14'
 let g:syntastic_python_checkers = ['flake8']
 
 Plugin 'vim-scripts/taglist.vim'
+
 Plugin 'rking/ag.vim'
 
 " CtrlP settings
@@ -66,6 +71,9 @@ set softtabstop=2
 set tabstop=2
 set shiftwidth=2
 set noexpandtab
+set conceallevel=1
+set listchars=tab:\|\ 
+set list
 
 set incsearch
 set hlsearch
@@ -116,8 +124,8 @@ noremap <C-w>k <C-w>j
 noremap <C-w>l <C-w>k
 noremap <C-w>; <C-w>l
 
-nnoremap <C-S-k> 3j
-nnoremap <C-S-l> 3k
+nnoremap <S-k> 3j
+nnoremap <S-l> 3k
 "MOVEMENT END"
 
 " Auto complete braces
@@ -127,7 +135,6 @@ inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>Oighlight ColorColumn ctermbg=darkgrey
 inoremap <expr> ) strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
 inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\"\"<Left>"
 inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\'" ? "\<Right>" : "\'\'<Left>"
@@ -145,9 +152,16 @@ nnoremap gV `[v`]
 let mapleader=","   
 
 "PLUGINS"
+""nnoremap <leader><Tab> :IndentLinesToggle<CR>
 
 nnoremap <leader>u :GundoToggle<CR>
 nnoremap <leader>a :Ag
+
+"GIT"
+nnoremap <leader>g :G<CR>
+nnoremap <leader>c :Gcommit<CR>
+nnoremap <leader><C-p> :Gpush<CR>
+nnoremap <leader>A :Gwrite<CR>
 
 
 
