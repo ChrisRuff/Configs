@@ -24,20 +24,26 @@ Plugin 'jvirtanen/vim-octave'
 
 Plugin 'xavierd/clang_complete'
 let g:clang_library_path='/usr/lib64/libclang.so.9'
+
 Plugin 'dense-analysis/ale'
-let g:ale_completion_enabled = 1
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '#>'
 nmap <silent> [c <Plug>(ale_previous_wrap)
 nmap <silent> ]c <Plug>(ale_next_wrap)
 let b:ale_linters = ['flake8', 'pylint', 'gcc', 'clang']
 
-" Fix files automatically on save
-let g:ale_fix_on_save = 1
-
 
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'rking/ag.vim'
+Plugin 'gavinbeatty/dragvisuals.vim'
+let g:DVB_TrimWS = 1 
+
+runtime plugin/dragvisuals.vim
+vmap  <expr> <LEFT> DVB_Drag('left')
+vmap  <expr> <RIGHT> DVB_Drag('right')
+vmap  <expr> <DOWN> DVB_Drag('down')
+vmap  <expr> <UP> DVB_Drag('up')
+vmap  <expr> D DVB_Duplicate() 
 
 " CtrlP settings
 Plugin 'kien/ctrlp.vim'
@@ -67,6 +73,10 @@ let g:Tlist_WinWidth=60
 call vundle#end()
 filetype plugin indent on
 
+set wildignore+=*.a,*.o
+set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
+set wildignore+=.DS_Store,.git,.hg,.svn
+set wildignore+=.*.dfp,*.hdb,*.dpi,*.cdb,*.kpt
 set clipboard=unnamedplus
 
 set softtabstop=2
@@ -94,7 +104,8 @@ set number
 set exrc 
 set secure
 set scrolloff=15
-set colorcolumn=200
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v',100)
 set syntax
 syntax enable
 " move the navigation keys one to the right to line up with traditional touch
@@ -108,10 +119,14 @@ nnoremap ; l
 " move to beginning/end of line
 nnoremap B ^
 nnoremap E $
+vnoremap B ^
+vnoremap E $
 
 " $/^ doesn't do anything
 nnoremap $ <nop>
 nnoremap ^ <nop>
+vnoremap $ <nop>
+vnoremap ^ <nop>
 "shifting move keys over one"
 map h <nop>
 vnoremap j h
@@ -130,20 +145,18 @@ nnoremap <S-l> 3k
 "MOVEMENT END"
 
 " Auto complete braces
-inoremap " ""<left>
-inoremap ' ''<left>
 inoremap ( ()<left>
 inoremap [ []<left>
 inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap <expr> ) strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
-inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\"\"<Left>"
-inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\'" ? "\<Right>" : "\'\'<Left>"
+inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : strpart(getline('.'), col('.')-1, 1) == "" ? "\"\"<left>" : "\""
+inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\'" ? "\<Right>" : strpart(getline('.'), col('.')-1, 1) == "" ? "\'\'<left>" : "\'"
 inoremap <expr> } strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
 inoremap <expr> ] strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
 
 " turn off search highlight
-nnoremap <leader><space> :nohlsearch<CR>
+nnoremap <leader>f :nohlsearch<CR>
 nnoremap <space> za
 
 " highlight last inserted text
@@ -156,7 +169,8 @@ let mapleader=","
 ""nnoremap <leader><Tab> :IndentLinesToggle<CR>
 
 nnoremap <leader>u :GundoToggle<CR>
-nnoremap <leader>a :Ag
+nnoremap <leader>l :CtrlPLine<CR>
+nnoremap <leader>t :Tlist<CR>
 
 "GIT"
 nnoremap <leader>g :G<CR>
