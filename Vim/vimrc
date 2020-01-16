@@ -68,6 +68,11 @@ Plugin 'LaTeX-Suite-aka-Vim-LaTeX'
 
 Plugin 'sjl/gundo.vim'
 
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
 
 let g:Tlist_WinWidth=60
 call vundle#end()
@@ -145,15 +150,17 @@ nnoremap <S-l> 3k
 "MOVEMENT END"
 
 " Auto complete braces
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
+inoremap <expr>( strpart(getline('.'), col('.')-1, 1) == "" ? "()\<left>" : "("
+inoremap <expr>{ strpart(getline('.'), col('.')-1, 1) == "" ? "{}\<left>" : "{"
+inoremap <expr>[ strpart(getline('.'), col('.')-1, 1) == "" ? "[]\<left>" : "["
+
 inoremap {<CR> {<CR>}<ESC>O
 inoremap <expr> ) strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
 inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : strpart(getline('.'), col('.')-1, 1) == "" ? "\"\"<left>" : "\""
 inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\'" ? "\<Right>" : strpart(getline('.'), col('.')-1, 1) == "" ? "\'\'<left>" : "\'"
 inoremap <expr> } strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
 inoremap <expr> ] strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
+inoremap <expr> > strpart(getline('.'), col('.')-1, 1) == ">" ? "\<Right>" : ">"
 
 " turn off search highlight
 nnoremap <leader>f :nohlsearch<CR>
@@ -179,6 +186,15 @@ nnoremap <leader><C-p> :Gpush<CR>
 nnoremap <leader>A :Gwrite<CR>
 
 
-
+function! SetupPython()
+    " Here, you can have the final say on what is set.  So
+    " fixup any settings you don't like.
+    setlocal softtabstop=2
+    setlocal tabstop=2
+    setlocal shiftwidth=2
+endfunction
+command! -bar SetupPython call SetupPython()
+"autocmd FileType python SetupPython
+"
 " do not load defaults if ~/.vimrc is missing
 "let skip_defaults_vim=1

@@ -237,8 +237,6 @@ filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
         \ gpicview %c,
         \ {View in shotwell}
         \ shotwell,
-fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm
-         \ identify %f
 
 " OpenRaster
 filextype *.ora
@@ -500,10 +498,22 @@ fileviewer *.html
  \ w3m %c
 
 "MOVEMENT START"
-nnoremap j h
-nnoremap k j
-nnoremap l k
-nnoremap ; l
+noremap j h
+noremap k j
+noremap l k
+noremap ; l
+noremap <C-w>j <C-w>h
+noremap <C-w>k <C-w>j
+noremap <C-w>l <C-w>k
+noremap <C-w>; <C-w>l
+qnoremap j h
+qnoremap k j
+qnoremap l k
+qnoremap ; l
+qnoremap <C-w>j <C-w>h
+qnoremap <C-w>k <C-w>j
+qnoremap <C-w>l <C-w>k
+qnoremap <C-w>; <C-w>l
 
 " move to beginning/end of line
 nnoremap B ^

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 echo "Creating Symlinks"
 ln -sfn $PWD/Vim/vimrc /etc/vimrc
 ln -sfn $PWD/i3/config ~/.i3/config
