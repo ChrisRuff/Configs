@@ -20,3 +20,6 @@ cat $PWD/Bashrc_Additions/bashrc >> ~/.bashrc
 echo "~~~~~~~~~~~~~~~~~~~~~~~~~~Setting default programs"
 ln -sfn $PWD/Defautls/.profile ~/.profile
 ln -sfn $PWD/Defaults/mimeapps.list ~/.configs/mimeapps.list
+
+echo "~~~~~~~~~~~~~~~~~~~~~~~~~~Building Vim Packages"
+python3 ~/.vim/bundle/YouCompleteMe/install.py --clang-completer

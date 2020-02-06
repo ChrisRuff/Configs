@@ -484,7 +484,7 @@ nnoremap <f8> :delete<cr>
 nnoremap W :view<cr>
 
 "OPEN FILES"
-filetype *.pdf xdg-open
+filetype *.pdf *.jpg *.png xdg-open
 
 "PREVIEW"
 
