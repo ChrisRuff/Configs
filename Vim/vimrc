@@ -23,7 +23,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'jvirtanen/vim-octave'
 
 Plugin 'ycm-core/YouCompleteMe'
-
+Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'dense-analysis/ale'
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '#>'
