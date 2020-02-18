@@ -162,7 +162,7 @@ inoremap <expr> ] strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
 inoremap <expr> > strpart(getline('.'), col('.')-1, 1) == ">" ? "\<Right>" : ">"
 
 " turn off search highlight
-nnoremap <leader>f :nohlsearch<CR>
+map <leader>f :nohlsearch<CR>
 nnoremap <space> za
 
 " highlight last inserted text
