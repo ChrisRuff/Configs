@@ -9,7 +9,6 @@
 " This line should not be removed as it ensures that various options are
 " properly set to work with the Vim-related packages.
 runtime! archlinux.vim
-
 set nocompatible
 filetype off
 
@@ -31,7 +30,10 @@ nmap <silent> [c <Plug>(ale_previous_wrap)
 nmap <silent> ]c <Plug>(ale_next_wrap)
 let b:ale_linters = ['flake8', 'pylint', 'gcc', 'clang']
 
+Plugin 'Jacotsu/CoVim-Neovim'
+let CoVim_defulat_name = "Chris"
 
+Plugin 'fedorenchik/qt-support.vim'
 Plugin 'vim-scripts/taglist.vim'
 Plugin 'rking/ag.vim'
 Plugin 'gavinbeatty/dragvisuals.vim'
@@ -81,7 +83,7 @@ set wildignore+=*.a,*.o
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
 set wildignore+=.DS_Store,.git,.hg,.svn
 set wildignore+=.*.dfp,*.hdb,*.dpi,*.cdb,*.kpt
-set clipboard=unnamedplus
+set clipboard=unnamed
 
 set softtabstop=2
 set tabstop=2
