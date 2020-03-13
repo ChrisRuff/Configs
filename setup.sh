@@ -28,6 +28,7 @@ ln -sfn $PWD/XResources/Xresources ~/.Xresources
 
 echo "~~~~~~~~~~~~~~~Updating Bash Profile~~~~~~~~~~~~~~~"
 cat $PWD/Bashrc_Additions/bashrc >> ~/.bashrc
+ln -sfn $PWD/Bashrc_Additions/.bash_aliases ~/.bash_aliases
 
 echo "~~~~~~~~~~~~~~~Setting default programs~~~~~~~~~~~~~~~"
 ln -sfn $PWD/Defautls/.profile ~/.profile
