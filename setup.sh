@@ -6,7 +6,7 @@ pacman --noconfirm -S yay
 yay --noconfirm -S redshift python spotify google-chrome \
 gvim ranger fontforge gitkraken vimb-git
 
-echo "~~~~~~~~~~~~~~~~~~~~~~~~~~Creating Symlinks"
+echo "~~~~~~~~~~~~~~~Creating Symlinks~~~~~~~~~~~~~~~"
 
 ln -sfn $PWD/Vim/vimrc ~/.vimrc
 
@@ -24,12 +24,14 @@ ln -sfn $PWD/Ranger/rc.conf ~/.config/ranger/rc.conf
 mkdir -p ~/.config/redshift
 ln -sfn $PWD/Redshift/redshift.conf ~/.config/redshift/redshift.conf
 
-echo "~~~~~~~~~~~~~~~~~~~~~~~~~~Updating Bash Profile"
-#cat $PWD/Bashrc_Additions/bashrc >> ~/.bashrc
+ln -sfn $PWD/XResources/Xresources ~/.Xresources
 
-echo "~~~~~~~~~~~~~~~~~~~~~~~~~~Setting default programs"
+echo "~~~~~~~~~~~~~~~Updating Bash Profile~~~~~~~~~~~~~~~"
+cat $PWD/Bashrc_Additions/bashrc >> ~/.bashrc
+
+echo "~~~~~~~~~~~~~~~Setting default programs~~~~~~~~~~~~~~~"
 ln -sfn $PWD/Defautls/.profile ~/.profile
 ln -sfn $PWD/Defaults/mimeapps.list ~/.configs/mimeapps.list
 
-echo "~~~~~~~~~~~~~~~~~~~~~~~~~~Building Vim Packages"
-#python3 ~/.vim/bundle/YouCompleteMe/install.py --clang-completer
+echo "~~~~~~~~~~~~~~~Building Vim Packages~~~~~~~~~~~~~~~"
+python3 ~/.vim/bundle/YouCompleteMe/install.py --clang-completer
