@@ -24,7 +24,7 @@ ln -sfn $PWD/Ranger/rc.conf ~/.config/ranger/rc.conf
 mkdir -p ~/.config/redshift
 ln -sfn $PWD/Redshift/redshift.conf ~/.config/redshift/redshift.conf
 
-ln -sfn $PWD/XResources/Xresources ~/.Xresources
+ln -sfn $PWD/XResources/.Xresources ~/.Xresources
 
 echo "~~~~~~~~~~~~~~~Updating Bash Profile~~~~~~~~~~~~~~~"
 cat $PWD/Bashrc_Additions/bashrc >> ~/.bashrc
