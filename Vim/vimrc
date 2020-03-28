@@ -12,31 +12,49 @@ runtime! archlinux.vim
 set nocompatible
 filetype off
 
+"Leader is comma"'
+let mapleader=","   
+let maplocalleader=","
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
-Plugin 'tpope/vim-fugitive'
 Plugin 'VundleVim/Vundle.vim'
 
-"OCTAVE"
-Plugin 'jvirtanen/vim-octave'
-
+Plugin 'tpope/vim-fugitive'
+Plugin 'DoxygenToolkit.vim'
 Plugin 'ycm-core/YouCompleteMe'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'dense-analysis/ale'
+Plugin 'fedorenchik/qt-support.vim'
+Plugin 'vim-scripts/taglist.vim'
+Plugin 'rking/ag.vim'
+Plugin 'gavinbeatty/dragvisuals.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'preservim/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'simeji/winresizer'
+Plugin 'floobits/floobits-neovim'
+Plugin 'sjl/gundo.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'rafi/awesome-vim-colorschemes'
+Plugin 'troydm/zoomwintab.vim'
+
+let g:DoxygenToolkit_enhanced_color=1
+let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
+let g:DoxygenToolkit_paramTag_pre="@Param "
+let g:DoxygenToolkit_returnTag="@Returns   "
+let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
+let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
+let g:DoxygenToolkit_authorName="Chris Ruff"
+
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '#>'
 nmap <silent> [c <Plug>(ale_previous_wrap)
 nmap <silent> ]c <Plug>(ale_next_wrap)
 let b:ale_linters = ['flake8', 'pylint', 'gcc', 'clang']
 
-Plugin 'Jacotsu/CoVim-Neovim'
-let CoVim_defulat_name = "Chris"
 
-Plugin 'fedorenchik/qt-support.vim'
-Plugin 'vim-scripts/taglist.vim'
-Plugin 'rking/ag.vim'
-Plugin 'gavinbeatty/dragvisuals.vim'
 let g:DVB_TrimWS = 1 
 
 runtime plugin/dragvisuals.vim
@@ -47,7 +65,6 @@ vmap  <expr> <UP> DVB_Drag('up')
 vmap  <expr> D DVB_Duplicate() 
 
 " CtrlP settings
-Plugin 'kien/ctrlp.vim'
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
@@ -59,26 +76,47 @@ let g:ctrlp_prompt_mappings = {
 	\ 'PrtSelectMove("j")': ['<c-k>', '<down>'],
 	\ }
 
-Plugin 'simeji/winresizer'
+"NerdTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = ""
+let g:NERDTreeDirArrowCollapsible = ""
+let g:NERDTreeIgnore=['CMakeFiles[[dir]]']
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "*",
+    \ "Staged"    : "+",
+    \ "Untracked" : "^",
+    \ "Renamed"   : "-",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : 'X',
+    \ "Unknown"   : "?"
+    \ }
+nnoremap <Leader>z :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>v :NERDTreeFind<CR>
+
 let g:winresizer_keycode_left = 106
 let g:winresizer_keycode_right = 59
 let g:winresizer_keycode_down = 107
 let g:winresizer_keycode_up = 108
 
-Plugin 'LaTeX-Suite-aka-Vim-LaTeX'
-
-Plugin 'sjl/gundo.vim'
-
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 let g:Tlist_WinWidth=60
+
 call vundle#end()
+
 filetype plugin indent on
 
+colorscheme OceanicNext
 set wildignore+=*.a,*.o
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
 set wildignore+=.DS_Store,.git,.hg,.svn
@@ -102,6 +140,7 @@ set foldnestmax=10
 set foldmethod=indent
 
 set cursorline
+hi CursorLine cterm=NONE ctermbg=234 ctermfg=NONE
 set lazyredraw
 set wildmenu
 set showmatch
@@ -169,9 +208,6 @@ nnoremap <space> za
 
 " highlight last inserted text
 nnoremap gV `[v`]
-
-"Leader is comma"'
-let mapleader=","   
 
 "PLUGINS"
 ""nnoremap <leader><Tab> :IndentLinesToggle<CR>

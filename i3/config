@@ -33,7 +33,7 @@ bindsym $mod+Shift+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id dmenu_recency
+bindsym $mod+d exec --no-startup-id dmenu_recent_aliases
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu

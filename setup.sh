@@ -4,11 +4,14 @@ echo "~~~~~~~~~~~~~~~~~~~~~~~~~~Downloading Packages"
 pacman --noconfirm -S yay
 
 yay --noconfirm -S redshift python spotify google-chrome \
-gvim ranger fontforge gitkraken vimb-git
+gvim ranger fontforge gitkraken vimb-git vim-devicons nvim
 
 echo "~~~~~~~~~~~~~~~Creating Symlinks~~~~~~~~~~~~~~~"
 
 ln -sfn $PWD/Vim/vimrc ~/.vimrc
+
+mkdir -p ~/.config/nvim
+ln -sfn $PWD/NVim/init.vim ~/.config/nvim/init.vim
 
 mkdir -p ~/.i3
 ln -sfn $PWD/i3/config ~/.i3/config
