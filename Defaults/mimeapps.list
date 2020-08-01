@@ -10,18 +10,18 @@ application/x-extension-shtml=userapp-google-chrome.desktop
 application/xhtml+xml=userapp-google-chrome.desktop
 application/x-extension-xhtml=userapp-google-chrome.desktop
 application/x-extension-xht=userapp-google-chrome.desktop
-image/jpeg=viewnior.desktop;gpicview.desktop;
-image/png=viewnior.desktop;gpicview.desktop;
+image/jpeg=gimp.desktop;
+image/png=gimp.desktop;
 text/plain=vim.desktop
 x-scheme-handler/mailto=userapp-Thunderbird.desktop
 message/rfc822=userapp-Thunderbird.desktop
 application/pdf=epdfview.desktop
 
 [Added Associations]
-inode/directory=vifm.desktop;
-image/jpeg=viewnior.desktop;gpicview.desktop;
-image/png=viewnior.desktop;gpicview.desktop;
-text/plain=vim.desktop;
+inode/directory=ranger.desktop;
+image/jpeg=gimp.desktop;
+image/png=gimp.desktop;
+text/plain=nvim.desktop;
 x-scheme-handler/mailto=userapp-Thunderbird.desktop;
 message/rfc822=userapp-Thunderbird.desktop;
 application/pdf=epdfview.desktop;

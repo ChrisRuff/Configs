@@ -39,6 +39,9 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'troydm/zoomwintab.vim'
+Plugin 'apalmer1377/factorus'
+Plugin 'triglav/vim-visual-increment'
+Plugin 'lervag/vimtex'
 
 let g:DoxygenToolkit_enhanced_color=1
 let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
@@ -109,6 +112,8 @@ let g:winresizer_keycode_up = 108
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline_theme = 'afterglow'
 
 let g:Tlist_WinWidth=60
 
@@ -121,7 +126,10 @@ set wildignore+=*.a,*.o
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
 set wildignore+=.DS_Store,.git,.hg,.svn
 set wildignore+=.*.dfp,*.hdb,*.dpi,*.cdb,*.kpt
-set clipboard=unnamed
+
+"Remove octal so counting goes from 0-10 no 0-7
+set nrformats-=octal
+set clipboard=unnamedplus
 
 set softtabstop=2
 set tabstop=2
@@ -215,6 +223,8 @@ nnoremap gV `[v`]
 nnoremap <leader>u :GundoToggle<CR>
 nnoremap <leader>l :CtrlPLine<CR>
 nnoremap <leader>t :Tlist<CR>
+
+nnoremap <leader>m :Ag 
 
 "GIT"
 nnoremap <leader>g :G<CR>

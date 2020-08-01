@@ -1,10 +1,12 @@
 #!/bin/sh
 
-echo "~~~~~~~~~~~~~~~~~~~~~~~~~~Downloading Packages"
+
+echo "~~~~~~~~~~~~~~~Downloading Packages~~~~~~~~~~~~~~~"
 pacman --noconfirm -S yay
 
 yay --noconfirm -S redshift python spotify google-chrome \
-gvim ranger fontforge gitkraken vimb-git vim-devicons nvim
+ranger fontforge gitkraken vimb-git vim-devicons nvim cscope \
+flameshot peek
 
 echo "~~~~~~~~~~~~~~~Creating Symlinks~~~~~~~~~~~~~~~"
 
@@ -28,14 +30,20 @@ mkdir -p ~/.config/redshift
 ln -sfn $PWD/Redshift/redshift.conf ~/.config/redshift/redshift.conf
 
 ln -sfn $PWD/XResources/.Xresources ~/.Xresources
+ln -sfn $PWD/i3/pretty/background.png ~/Pictures/background.png
 
 echo "~~~~~~~~~~~~~~~Updating Bash Profile~~~~~~~~~~~~~~~"
-cat $PWD/Bashrc_Additions/bashrc >> ~/.bashrc
+echo ". ~/.bashrc_custom" >> ~/.bashrc
+ln -sfn $PWD/Bashrc_Additions/.bashrc_custom ~/.bashrc_custom
+ln -sfn $PWD/Bashrc_Additions/.bash_profile ~/.bash_profile
 ln -sfn $PWD/Bashrc_Additions/.bash_aliases ~/.bash_aliases
 
 echo "~~~~~~~~~~~~~~~Setting default programs~~~~~~~~~~~~~~~"
 ln -sfn $PWD/Defautls/.profile ~/.profile
 ln -sfn $PWD/Defaults/mimeapps.list ~/.configs/mimeapps.list
+
+mkdir -p ~/.local/share/applications/
+ln -sfn $PWD/Defaults/mimeapps.list ~/.local/share/applications/mimeapps.list
 
 echo "~~~~~~~~~~~~~~~Building Vim Packages~~~~~~~~~~~~~~~"
 python3 ~/.vim/bundle/YouCompleteMe/install.py --clang-completer

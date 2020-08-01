@@ -1,2 +1,2 @@
-export EDITOR=/usr/bin/vim
+export EDITOR=/usr/bin/nvim
 export BROWSER=/usr/bin/google-chrome-stable

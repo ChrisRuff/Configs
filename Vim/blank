@@ -1,0 +1,69 @@
+"Remove octal so counting goes from 0-10 no 0-7
+set nrformats-=octal
+set clipboard=unnamedplus
+
+set softtabstop=2
+set tabstop=2
+set shiftwidth=2
+set noexpandtab
+set conceallevel=1
+set listchars=tab:\|\ 
+set list
+
+set incsearch
+set hlsearch
+
+set foldenable
+set foldlevelstart=10
+set foldnestmax=10
+set foldmethod=indent
+
+set cursorline
+hi CursorLine cterm=NONE ctermbg=234 ctermfg=NONE
+set lazyredraw
+set wildmenu
+set showmatch
+set matchpairs+=<:>
+set number
+set exrc 
+set secure
+set scrolloff=15
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v',100)
+set syntax
+syntax enable
+" move the navigation keys one to the right to line up with traditional touch
+" typing
+"MOVEMENT START"
+nnoremap j h
+nnoremap k j
+nnoremap l k
+nnoremap ; l
+
+" move to beginning/end of line
+nnoremap B ^
+nnoremap E $
+vnoremap B ^
+vnoremap E $
+
+" $/^ doesn't do anything
+nnoremap $ <nop>
+nnoremap ^ <nop>
+vnoremap $ <nop>
+vnoremap ^ <nop>
+"shifting move keys over one"
+nnoremap h <nop>
+vnoremap j h
+vnoremap k j
+vnoremap l k
+vnoremap ; l
+nnoremap <C-k> jzz
+nnoremap <C-l> kzz
+noremap <C-w>j <C-w>h
+noremap <C-w>k <C-w>j
+noremap <C-w>l <C-w>k
+noremap <C-w>; <C-w>l
+
+nnoremap <S-k> 3j
+nnoremap <S-l> 3k
+"MOVEMENT END"
