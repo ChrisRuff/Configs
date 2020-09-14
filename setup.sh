@@ -5,7 +5,7 @@ echo "~~~~~~~~~~~~~~~Downloading Packages~~~~~~~~~~~~~~~"
 pacman --noconfirm -S yay
 
 yay --noconfirm -S redshift python spotify google-chrome \
-ranger fontforge gitkraken vimb-git vim-devicons nvim cscope \
+ranger fontforge gitkraken vimb-git vim-devicons nvim \
 flameshot peek
 
 echo "~~~~~~~~~~~~~~~Creating Symlinks~~~~~~~~~~~~~~~"

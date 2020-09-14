@@ -2,7 +2,6 @@
 if [ -f ~/.bash_aliases ]; then
 . ~/.bash_aliases
 fi
-export BROWSER=vimb
 export PROMPT_COMMAND="pwd > /tmp/whereami"
 export QSYS_ROOTDIR="/home/chris/.cache/yay/quartus-free/pkg/quartus-free/opt/altera/19.1/quartus/sopc_builder/bin"
 source /home/chris/.bazel/bin/bazel-complete.bash
