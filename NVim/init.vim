@@ -27,8 +27,6 @@ call plug#begin(stdpath('data') . 'plugged')
 	Plug 'junegunn/fzf.vim'
 	Plug 'rhysd/vim-grammarous'
 
-
-	Plug 'DoxygenToolkit.vim'
 	Plug 'rking/ag.vim'
 	Plug 'ctrlpvim/ctrlp.vim'
 	Plug 'zirrostig/vim-schlepp'
@@ -184,7 +182,7 @@ let g:NERDTreeTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable = ""
 let g:NERDTreeDirArrowCollapsible = ""
 let g:NERDTreeIgnore=['CMakeFiles[[dir]]']
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "*",
     \ "Staged"    : "+",
     \ "Untracked" : "^",
