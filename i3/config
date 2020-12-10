@@ -71,6 +71,10 @@ bindsym $mod+Shift+Print --release exec --no-startup-id peek
 bindsym $mod+Shift+m exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
+bindsym XF86AudioPrev  exec ~/.i3/spotify_control.sh previous  &>> /tmp/out
+bindsym XF86AudioPlay  exec ~/.i3/spotify_control.sh playpause &>> /tmp/out
+bindsym XF86AudioPause exec ~/.i3/spotify_control.sh playpause &>> /tmp/out
+bindsym XF86AudioNext  exec ~/.i3/spotify_control.sh next      &>> /tmp/out
 # focus_follows_mouse no
 
 # change focus
@@ -146,6 +150,7 @@ set $ws6 6
 set $ws7 7:
 set $ws8 8
 set $ws9 9:
+set $ws10 10:
 
 #specify workspace monitors
 set $mon1 = DP-0
@@ -170,6 +175,8 @@ bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
+# Mod1 = Alt
+bindsym $mod+Mod1+1 workspace $ws10 
 
 # Move focused container to workspace
 bindsym $mod+Ctrl+1 move container to workspace $ws1
@@ -313,7 +320,6 @@ exec_always --no-startup-id fix_xcursor
 # to:
 # background $term_background
 # Same logic applied to everything else.
-set_from_resource $term_background background
 set_from_resource $term_foreground foreground
 set_from_resource $term_color0     color0
 set_from_resource $term_color1     color1

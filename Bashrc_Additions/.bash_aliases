@@ -20,3 +20,5 @@ alias ranger="i3-sensible-terminal -e ranger"
 alias gitc="find . -type f -size +100000k -exec ls -lh {} \; | awk '{ print \$9 \": \" \$5 }'"
 
 alias sc="cd ~/Documents/Git_Repos/School/Fall2020"
+
+alias status="neofetch"

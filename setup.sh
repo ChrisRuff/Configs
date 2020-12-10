@@ -6,7 +6,7 @@ pacman --noconfirm -S yay
 
 yay --noconfirm -S redshift python spotify google-chrome \
 ranger fontforge gitkraken vimb-git vim-devicons nvim \
-flameshot peek
+flameshot peek neofetch
 
 echo "~~~~~~~~~~~~~~~Creating Symlinks~~~~~~~~~~~~~~~"
 
@@ -18,6 +18,7 @@ ln -sfn $PWD/NVim/init.vim ~/.config/nvim/init.vim
 mkdir -p ~/.i3
 ln -sfn $PWD/i3/config ~/.i3/config
 ln -sfn $PWD/i3/i3_shell.sh ~/.i3/i3_shell.sh
+ln -sfn $PWD/i3/spotify_control.sh ~/.i3/spotify_control.sh
 
 mkdir -p ~/.config/vimb
 ln -sfn $PWD/Vimb/config ~/.config/vimb/config
@@ -44,6 +45,3 @@ ln -sfn $PWD/Defaults/mimeapps.list ~/.configs/mimeapps.list
 
 mkdir -p ~/.local/share/applications/
 ln -sfn $PWD/Defaults/mimeapps.list ~/.local/share/applications/mimeapps.list
-
-echo "~~~~~~~~~~~~~~~Building Vim Packages~~~~~~~~~~~~~~~"
-python3 ~/.vim/bundle/YouCompleteMe/install.py --clang-completer
