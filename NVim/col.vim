@@ -81,10 +81,10 @@ syntax enable
 " move the navigation keys one to the right to line up with traditional touch
 " typing
 "MOVEMENT START"
-nnoremap j h
-nnoremap k j
-nnoremap l k
-nnoremap ; l
+nnoremap n h
+nnoremap e j
+nnoremap i k
+nnoremap o l
 
 " move to beginning/end of line
 nnoremap B ^
@@ -99,10 +99,10 @@ vnoremap $ <nop>
 vnoremap ^ <nop>
 "shifting move keys over one"
 map h <nop>
-vnoremap j h
-vnoremap k j
-vnoremap l k
-vnoremap ; l
+vnoremap n h
+vnoremap e j
+vnoremap i k
+vnoremap o l
 nnoremap <C-k> jzz
 nnoremap <C-l> kzz
 noremap <C-w>j <C-w>h

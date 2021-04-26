@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 
 echo "~~~~~~~~~~~~~~~Downloading Packages~~~~~~~~~~~~~~~"
@@ -19,6 +19,7 @@ mkdir -p ~/.i3
 ln -sfn $PWD/i3/config ~/.i3/config
 ln -sfn $PWD/i3/i3_shell.sh ~/.i3/i3_shell.sh
 ln -sfn $PWD/i3/spotify_control.sh ~/.i3/spotify_control.sh
+ln -sfn $PWD/i3/keyboard_switch.sh ~/.i3/keyboard_switch.sh
 
 mkdir -p ~/.config/vimb
 ln -sfn $PWD/Vimb/config ~/.config/vimb/config
@@ -45,3 +46,6 @@ ln -sfn $PWD/Defaults/mimeapps.list ~/.configs/mimeapps.list
 
 mkdir -p ~/.local/share/applications/
 ln -sfn $PWD/Defaults/mimeapps.list ~/.local/share/applications/mimeapps.list
+
+mkdir -p ~/.Xmodmap
+ln -sfn $PWD/Defaults/.Xmodmap
