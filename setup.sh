@@ -1,10 +1,9 @@
 #!/bin/bash
 
-
 echo "~~~~~~~~~~~~~~~Downloading Packages~~~~~~~~~~~~~~~"
 pacman --noconfirm -S yay
 
-yay --noconfirm -S redshift python spotify google-chrome \
+yay --noconfirm -S redshift python google-chrome \
 ranger fontforge gitkraken vimb-git vim-devicons nvim \
 flameshot peek neofetch
 
@@ -16,10 +15,10 @@ mkdir -p ~/.config/nvim
 ln -sfn $PWD/NVim/init.vim ~/.config/nvim/init.vim
 
 mkdir -p ~/.i3
-ln -sfn $PWD/i3/config ~/.i3/config
-ln -sfn $PWD/i3/i3_shell.sh ~/.i3/i3_shell.sh
-ln -sfn $PWD/i3/spotify_control.sh ~/.i3/spotify_control.sh
-ln -sfn $PWD/i3/keyboard_switch.sh ~/.i3/keyboard_switch.sh
+ln -sfn $PWD/i3/config ~/.config/i3/config
+ln -sfn $PWD/i3/i3_shell.sh ~/.config/i3/i3_shell.sh
+ln -sfn $PWD/i3/spotify_control.sh ~/.config/i3/spotify_control.sh
+ln -sfn $PWD/i3/keyboard_switch.sh ~/.config/i3/keyboard_switch.sh
 
 mkdir -p ~/.config/vimb
 ln -sfn $PWD/Vimb/config ~/.config/vimb/config

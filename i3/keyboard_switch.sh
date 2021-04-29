@@ -1,15 +1,18 @@
 #!/bin/bash
-DIR="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
-echo ${DIR}
+DIR="$( readlink -f `which $0`)"
+DIR="$(dirname "$DIR")"
+DIR="$(dirname "$DIR")"
 
+cat ${DIR}/i3/common > ${DIR}/i3/config
 if setxkbmap -query | grep -q "variant:\s\+colemak_dh" 
 then
 	setxkbmap -layout us
-	\cp ${DIR}/config_reg ${DIR}/config
-	\cp ${DIR}/../NVim/reg.vim ${DIR}/../Nvim/init.vim
+	cat ${DIR}/i3/config_reg >> ${DIR}/i3/config
+	\cp ${DIR}/NVim/reg.vim ${DIR}/NVim/init.vim
 else
 	setxkbmap -layout us -variant colemak_dh
-	\cp ${DIR}/config_colemak ${DIR}/config
-	\cp ${DIR}/../NVim/col.vim ${DIR}/../Nvim/init.vim
+	cat ${DIR}/i3/config_colemak >> ${DIR}/i3/config
+	\cp ${DIR}/NVim/col.vim ${DIR}/NVim/init.vim
 fi 
 i3-msg reload
+xmodmap ~/.Xmodmap

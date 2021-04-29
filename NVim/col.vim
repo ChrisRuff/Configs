@@ -85,6 +85,35 @@ nnoremap n h
 nnoremap e j
 nnoremap i k
 nnoremap o l
+nnoremap <C-n> <C-w>h
+nnoremap <C-e> <C-w>j
+nnoremap <C-i> <C-w>k
+nnoremap <C-o> <C-w>l
+
+nnoremap <C-;> <C-p>
+nnoremap <C-p> <C-p>
+
+" Colemak rebindings 
+nnoremap j y
+nnoremap J Y
+nnoremap u i
+nnoremap U I
+nnoremap y o
+nnoremap Y O
+nnoremap p r
+nnoremap P R
+nnoremap l u
+nnoremap L U
+nnoremap s d
+nnoremap S D
+nnoremap t f
+nnoremap T F
+nnoremap d c
+nnoremap D C
+nnoremap c x
+nnoremap C X
+nnoremap ; p
+nnoremap ss dd
 
 " move to beginning/end of line
 nnoremap B ^
@@ -98,20 +127,21 @@ nnoremap ^ <nop>
 vnoremap $ <nop>
 vnoremap ^ <nop>
 "shifting move keys over one"
-map h <nop>
+map h <nopi
 vnoremap n h
 vnoremap e j
 vnoremap i k
 vnoremap o l
-nnoremap <C-k> jzz
-nnoremap <C-l> kzz
+nnoremap <C-e> ezz
+nnoremap <C-i> izz
 noremap <C-w>j <C-w>h
 noremap <C-w>k <C-w>j
 noremap <C-w>l <C-w>k
 noremap <C-w>; <C-w>l
 
-nmap <S-k> 3k
-nmap <S-l> 3l
+nmap <S-e> 3e
+nmap <S-i> 3i
+
 
 "MOVEMENT END"
 
@@ -129,11 +159,11 @@ inoremap <expr> ] strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
 inoremap <expr> > strpart(getline('.'), col('.')-1, 1) == ">" ? "\<Right>" : ">"
 
 " turn off search highlight
-map <leader>f :nohlsearch<CR>
+map <leader>e :nohlsearch<CR>
 nnoremap <space> za
 
 " highlight last inserted text
-nnoremap gV `[v`]
+nnoremap dV `[v`]
 
 " Count number of words in latex documents
 nmap <F3> :w !detex \| wc -w<CR>
@@ -211,8 +241,8 @@ let g:NERDToggleCheckAllLines = 1
 
 " ================================== vim-gitgutyter ====================================
 " \hp will preview hunk changes
-nmap ]g <Plug>(GitGutterNextHunk)
-nmap [g <Plug>(GitGutterPrevHunk)
+nmap ]d <Plug>(GitGutterNextHunk)
+nmap [d <Plug>(GitGutterPrevHunk)
 
 "========================================Airline=======================================
 let g:airline_powerline_fonts=1
@@ -261,7 +291,7 @@ let g:winresizer_keycode_up = 108
 
 " ====================================== undotree =================--==================
 " use `,u` to enter undotree. ? for help in window
-nnoremap <leader>u :UndotreeToggle<cr>
+nnoremap <leader>l :UndotreeToggle<cr>
 
 " ======================================== coc ========================================
 " Use tab for trigger completion with characters ahead and navigate.
@@ -287,10 +317,10 @@ nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> ds <Plug>(coc-definition)
+nmap <silent> ds <Plug>(coc-type-definition)
+nmap <silent> ds <Plug>(coc-implementation)
+nmap <silent> ds <Plug>(coc-references)
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
