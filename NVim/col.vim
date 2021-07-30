@@ -94,8 +94,16 @@ nnoremap <C-;> <C-p>
 nnoremap <C-p> <C-p>
 
 " Colemak rebindings 
+let g:ctrlp_prompt_mappings = {
+  \ 'PrtCurEnd()':          ['<c-]>'],
+  \ 'PrtSelectMove("j")':   ['<c-e>', '<down>'],
+  \ 'PrtSelectMove("k")':   ['<c-i>', '<up>'],
+  \ }
+
 nnoremap j y
 nnoremap J Y
+vnoremap j y
+vnoremap J Y
 nnoremap u i
 nnoremap U I
 nnoremap y o
@@ -114,6 +122,12 @@ nnoremap c x
 nnoremap C X
 nnoremap ; p
 nnoremap ss dd
+
+let g:NERDTreeMapOpenExpl=']'
+let g:NERDTreeMapOpenSplit='['
+let g:NERDTreeMenuDown='e'
+let g:NERDTreeMenuUp='i'
+  
 
 " move to beginning/end of line
 nnoremap B ^

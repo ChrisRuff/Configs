@@ -1,3 +1,3 @@
 #!/bin/bash
 WHEREAMI="/tmp/whereami"
-urxvt -cd $(cat $WHEREAMI)
+urxvt -cd "$(cat $WHEREAMI)"

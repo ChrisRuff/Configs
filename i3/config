@@ -128,18 +128,16 @@ set $ws8 8
 set $ws_discord 9:
 
 #specify workspace monitors
-set $mon1 = HDMI-0
-set $mon2 = DP-1
-set $mon3 = DVI-D-0
+set $mon1 = DP-1
+set $mon2 = HDMI-0
 
 workspace $ws1 output $mon1
 workspace $ws4 output $mon1
-workspace $ws7 output $mon1
-workspace $ws2 output $mon2
-workspace $ws3 output $mon3
+workspace $ws2 output $mon1
+workspace $ws3 output $mon2
 workspace $ws_discord output $mon1
 workspace $ws_steam output $mon2
-workspace $ws_spotify output $mon3
+workspace $ws_spotify output $mon2
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -178,6 +176,7 @@ bindsym $mod+Shift+9 move container to workspace $ws_discord; workspace $ws_disc
 set $ws_spotify 10:
 set $ws_git 11:
 set $ws_steam 12:
+set $ws_learn 13:AI
 
 bindsym $mod+comma mode "ws2"
 mode "ws2" {
@@ -190,6 +189,9 @@ mode "ws2" {
 	bindsym 3 workspace $ws_steam; mode "default"
 	bindsym Ctrl+3 move container to workspace $ws_steam; mode "default" 
 	bindsym Shift+3 move container to workspace $ws_steam; workspace $ws_steam; mode "default"
+	bindsym 4 workspace $ws_learn; mode "default"
+	bindsym Ctrl+4 move container to workspace $ws_learn; mode "default" 
+	bindsym Shift+4 move container to workspace $ws_learn; workspace $ws_learn; mode "default"
 	bindsym Escape mode "default"
 }
 
@@ -222,6 +224,9 @@ for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
+for_window [class="SysMan"] floating enable
+for_window [class="sysman"] floating enable
+for_window [class="display"] floating enable #Image magick
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -406,7 +411,7 @@ exec terminal
 exec /usr/bin/spotify
 exec /usr/bin/discord
 exec /usr/bin/gitkraken
-
+exec ~/.screenlayout/Home.sh
 # Set background
 exec_always feh --bg-scale ~/Pictures/background.png
 
