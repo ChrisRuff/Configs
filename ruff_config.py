@@ -44,19 +44,17 @@ def sym_links():
     place_configs("Intellij", expand_home(""))
     place_configs("Bashrc_Additions", expand_home(""))
     place_configs("XResources", expand_home(""))
-
-    place_config(get_path("picom.conf"), expand_home(".config/picom.conf"))
-
-    os.makedirs(expand_home(".config/gtk-3.0"), exist_ok=True)
-    place_config(get_path("settings.iml"), expand_home(".config/gtk-3.0/settings.iml"))
+    place_configs("Picom", expand_home(".config"))
+    place_configs("GTK", expand_home(".config/gtk-3.0"))
+    place_configs("Kitty", expand_home(".config/kitty"))
+    place_configs("Latex", expand_home(""))
+    place_configs("Git", expand_home(""))
 
     os.makedirs(expand_home(".config/i3status"), exist_ok=True)
     place_config(get_path("i3/i3status.conf"), expand_home(".config/i3status/config"))
 
-    os.makedirs(expand_home(".config/kitty"), exist_ok=True)
-    place_config(get_path("kitty.conf"), expand_home(".config/kitty/kitty.conf"))
 
 
 if __name__ == "__main__":
-    download()
+    #download()
     sym_links()
