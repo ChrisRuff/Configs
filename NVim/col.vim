@@ -78,21 +78,6 @@ call matchadd('ColorColumn', '\%81v',100)
 set syntax
 syntax enable
 
-" move the navigation keys one to the right to line up with traditional touch
-" typing
-"MOVEMENT START"
-nnoremap n h
-nnoremap e j
-nnoremap i k
-nnoremap o l
-nnoremap <C-n> <C-w>h
-nnoremap <C-e> <C-w>j
-nnoremap <C-i> <C-w>k
-nnoremap <C-o> <C-w>l
-
-nnoremap <C-;> <C-p>
-nnoremap <C-p> <C-p>
-
 " Colemak rebindings 
 let g:ctrlp_prompt_mappings = {
   \ 'PrtCurEnd()':          ['<c-]>'],
@@ -100,61 +85,47 @@ let g:ctrlp_prompt_mappings = {
   \ 'PrtSelectMove("k")':   ['<c-i>', '<up>'],
   \ }
 
-nnoremap j y
-nnoremap J Y
-vnoremap j y
-vnoremap J Y
-nnoremap u i
-nnoremap U I
-nnoremap y o
-nnoremap Y O
-nnoremap p r
-nnoremap P R
-nnoremap l u
-nnoremap L U
-nnoremap s d
-nnoremap S D
-nnoremap t f
-nnoremap T F
-nnoremap d c
-nnoremap D C
-nnoremap c x
-nnoremap C X
-nnoremap ; p
-nnoremap ss dd
 
-let g:NERDTreeMapOpenExpl=']'
-let g:NERDTreeMapOpenSplit='['
-let g:NERDTreeMenuDown='e'
-let g:NERDTreeMenuUp='i'
-  
+" Movement Keys are neio
+nnoremap n h|xnoremap n h|onoremap n h|vnoremap n h
+nnoremap e j|xnoremap e j|onoremap e j|vnoremap e j
+nnoremap i k|xnoremap i k|onoremap i k|vnoremap i k
+nnoremap o l|xnoremap o l|onoremap o l|vnoremap o l
 
+nnoremap h i|nnoremap H I|xnoremap h i|xnoremap H I
+nnoremap k o|nnoremap K O|xnoremap k o|xnoremap K O
+
+nnoremap <C-W>n <C-W>h|xnoremap <C-W>n <C-W>h
+nnoremap <C-W>e <C-W>j|xnoremap <C-W>e <C-W>j
+nnoremap <C-W>i <C-W>k|xnoremap <C-W>i <C-W>k
+nnoremap <C-W>o <C-W>l|xnoremap <C-W>o <C-W>l
+
+"" Make insert/add work also in visual line mode like in visual block mode
+xnoremap <silent> <expr> h (mode() =~# "[V]" ? "\<C-V>0o$I" : "I")
+xnoremap <silent> <expr> h (mode() =~# "[V]" ? "\<C-V>0o$I" : "I")
 " move to beginning/end of line
 nnoremap B ^
-nnoremap E $
+nnoremap F $
 vnoremap B ^
-vnoremap E $
+vnoremap F $
 
 " $/^ doesn't do anything
 nnoremap $ <nop>
 nnoremap ^ <nop>
 vnoremap $ <nop>
 vnoremap ^ <nop>
-"shifting move keys over one"
-map h <nopi
-vnoremap n h
-vnoremap e j
-vnoremap i k
-vnoremap o l
+
 nnoremap <C-e> ezz
 nnoremap <C-i> izz
-noremap <C-w>j <C-w>h
-noremap <C-w>k <C-w>j
-noremap <C-w>l <C-w>k
-noremap <C-w>; <C-w>l
 
 nmap <S-e> 3e
 nmap <S-i> 3i
+
+" Window remap 
+nnoremap <C-W>n <C-W>h|xnoremap <C-W>n <C-W>h|
+nnoremap <C-W>e <C-W>j|xnoremap <C-W>e <C-W>j|
+nnoremap <C-W>i <C-W>k|xnoremap <C-W>i <C-W>k|
+nnoremap <C-W>o <C-W>l|xnoremap <C-W>o <C-W>l|
 
 
 "MOVEMENT END"
@@ -245,6 +216,11 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ }
 nnoremap <Leader>z :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
+
+let g:NERDTreeMapOpenExpl=']'
+let g:NERDTreeMapOpenSplit='['
+let g:NERDTreeMenuDown='e'
+let g:NERDTreeMenuUp='i'
 
 " =================================== nerdcommenter ====================================
 let g:NERDSpaceDelims = 1

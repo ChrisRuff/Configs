@@ -47,6 +47,7 @@ bindsym $mod+z exec --no-startup-id morc_menu
 ################################################################################################
 
 exec --no-startup-id volumeicon
+exec --no-startup-id xset r rate 250 30
 bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 #exec --no-startup-id pulseaudio
 #exec --no-startup-id pa-applet
@@ -76,6 +77,11 @@ bindsym XF86AudioPrev  exec ~/.config/i3/spotify_control.sh previous  &>> /tmp/o
 bindsym XF86AudioPlay  exec ~/.config/i3/spotify_control.sh playpause &>> /tmp/out
 bindsym XF86AudioPause exec ~/.config/i3/spotify_control.sh playpause &>> /tmp/out
 bindsym XF86AudioNext  exec ~/.config/i3/spotify_control.sh next      &>> /tmp/out
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"
+bindsym XF86AudioLowerVolume exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "decrease_volume"
+bindsym XF86AudioMute exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "mute"
+bindsym XF86AudioMicMute exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "mic_mute"
 # focus_follows_mouse no
 
 
@@ -128,16 +134,17 @@ set $ws8 8
 set $ws_discord 9:
 
 #specify workspace monitors
-set $mon1 = DP-1
-set $mon2 = HDMI-0
+set $mon1 = DP-3
+set $mon2 = HDMI-1
+set $mon3 = HDMI-0
 
 workspace $ws1 output $mon1
 workspace $ws4 output $mon1
-workspace $ws2 output $mon1
-workspace $ws3 output $mon2
+workspace $ws2 output $mon2
+workspace $ws3 output $mon3
 workspace $ws_discord output $mon1
 workspace $ws_steam output $mon2
-workspace $ws_spotify output $mon2
+workspace $ws_spotify output $mon3
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -228,6 +235,25 @@ for_window [class="SysMan"] floating enable
 for_window [class="sysman"] floating enable
 for_window [class="display"] floating enable #Image magick
 
+# Plasma compatibility improvements
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+
+for_window [class="yakuake"] floating enable
+for_window [class="systemsettings"] floating enable
+for_window [class="plasmashell"] floating enable;
+for_window [class="Plasma"] floating enable; border none
+for_window [title="plasma-desktop"] floating enable; border none
+for_window [title="win7"] floating enable; border none
+for_window [class="krunner"] floating enable; border none
+for_window [class="Kmix"] floating enable; border none
+for_window [class="Klipper"] floating enable; border none
+for_window [class="Plasmoidviewer"] floating enable; border none
+for_window [class="(?i)*nextcloud*"] floating disable
+for_window [class="plasmashell" window_type="notification"] border none, move right 700px, move down 450px
+no_focus [class="plasmashell" window_type="notification"]
+for_window [title="Desktop — Plasma"] kill; floating enable; border none
+
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
 
@@ -253,6 +279,9 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
+# Remap to Colemac
+bindsym $mod+equal exec ~/.config/i3/keyboard_switch.sh
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -383,8 +412,6 @@ mode "$mode_gaps_outer" {
 bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
 
-# Remap to Colemac
-bindsym $mod+equal exec ~/.config/i3/keyboard_switch.sh
 
 for_window [instance="ranger"] move window to workspace $ws4
 for_window [instance="vifm"] move window to workspace $ws4
@@ -411,40 +438,45 @@ exec terminal
 exec /usr/bin/spotify
 exec /usr/bin/discord
 exec /usr/bin/gitkraken
-exec ~/.screenlayout/Home.sh
+
 # Set background
 exec_always feh --bg-scale ~/Pictures/background.png
+exec_always --no-startup-id picom -bc
+
+# Set monitors
+exec_always ~/.screenlayout/Freddy.sh
 
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+n focus left
+bindsym $mod+e focus down
+bindsym $mod+i focus up
+bindsym $mod+o focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+n move left
+bindsym $mod+Shift+e move down
+bindsym $mod+Shift+i move up
+bindsym $mod+Shift+o move right
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+Ctrl+e layout toggle split
 
 # Resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
         # Pressing left will shrink the window’s width.
+				#
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 5 px or 5 ppt
-        bindsym k resize grow height 5 px or 5 ppt
-        bindsym l resize shrink height 5 px or 5 ppt
-        bindsym semicolon resize grow width 5 px or 5 ppt
+        bindsym n resize shrink width 5 px or 5 ppt
+        bindsym e resize grow height 5 px or 5 ppt
+        bindsym i resize shrink height 5 px or 5 ppt
+        bindsym o resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt

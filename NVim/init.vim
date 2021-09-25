@@ -78,40 +78,55 @@ call matchadd('ColorColumn', '\%81v',100)
 set syntax
 syntax enable
 
-" move the navigation keys one to the right to line up with traditional touch
-" typing
-"MOVEMENT START"
-nnoremap j h
-nnoremap k j
-nnoremap l k
-nnoremap ; l
+" Colemak rebindings 
+let g:ctrlp_prompt_mappings = {
+  \ 'PrtCurEnd()':          ['<c-]>'],
+  \ 'PrtSelectMove("j")':   ['<c-e>', '<down>'],
+  \ 'PrtSelectMove("k")':   ['<c-i>', '<up>'],
+  \ }
 
+
+" Movement Keys are neio
+nnoremap n h|xnoremap n h|onoremap n h|vnoremap n h
+nnoremap e j|xnoremap e j|onoremap e j|vnoremap e j
+nnoremap i k|xnoremap i k|onoremap i k|vnoremap i k
+nnoremap o l|xnoremap o l|onoremap o l|vnoremap o l
+
+nnoremap h i|nnoremap H I|xnoremap h i|xnoremap H I
+nnoremap k o|nnoremap K O|xnoremap k o|xnoremap K O
+
+nnoremap <C-W>n <C-W>h|xnoremap <C-W>n <C-W>h
+nnoremap <C-W>e <C-W>j|xnoremap <C-W>e <C-W>j
+nnoremap <C-W>i <C-W>k|xnoremap <C-W>i <C-W>k
+nnoremap <C-W>o <C-W>l|xnoremap <C-W>o <C-W>l
+
+"" Make insert/add work also in visual line mode like in visual block mode
+xnoremap <silent> <expr> h (mode() =~# "[V]" ? "\<C-V>0o$I" : "I")
+xnoremap <silent> <expr> h (mode() =~# "[V]" ? "\<C-V>0o$I" : "I")
 " move to beginning/end of line
 nnoremap B ^
-nnoremap E $
+nnoremap F $
 vnoremap B ^
-vnoremap E $
+vnoremap F $
 
 " $/^ doesn't do anything
 nnoremap $ <nop>
 nnoremap ^ <nop>
 vnoremap $ <nop>
 vnoremap ^ <nop>
-"shifting move keys over one"
-map h <nop>
-vnoremap j h
-vnoremap k j
-vnoremap l k
-vnoremap ; l
-nnoremap <C-k> jzz
-nnoremap <C-l> kzz
-noremap <C-w>j <C-w>h
-noremap <C-w>k <C-w>j
-noremap <C-w>l <C-w>k
-noremap <C-w>; <C-w>l
 
-nmap <S-k> 3k
-nmap <S-l> 3l
+nnoremap <C-e> ezz
+nnoremap <C-i> izz
+
+nmap <S-e> 3e
+nmap <S-i> 3i
+
+" Window remap 
+nnoremap <C-W>n <C-W>h|xnoremap <C-W>n <C-W>h|
+nnoremap <C-W>e <C-W>j|xnoremap <C-W>e <C-W>j|
+nnoremap <C-W>i <C-W>k|xnoremap <C-W>i <C-W>k|
+nnoremap <C-W>o <C-W>l|xnoremap <C-W>o <C-W>l|
+
 
 "MOVEMENT END"
 
@@ -129,11 +144,11 @@ inoremap <expr> ] strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
 inoremap <expr> > strpart(getline('.'), col('.')-1, 1) == ">" ? "\<Right>" : ">"
 
 " turn off search highlight
-map <leader>f :nohlsearch<CR>
+map <leader>e :nohlsearch<CR>
 nnoremap <space> za
 
 " highlight last inserted text
-nnoremap gV `[v`]
+nnoremap dV `[v`]
 
 " Count number of words in latex documents
 nmap <F3> :w !detex \| wc -w<CR>
@@ -202,6 +217,11 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 nnoremap <Leader>z :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 
+let g:NERDTreeMapOpenExpl=']'
+let g:NERDTreeMapOpenSplit='['
+let g:NERDTreeMenuDown='e'
+let g:NERDTreeMenuUp='i'
+
 " =================================== nerdcommenter ====================================
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
@@ -211,8 +231,8 @@ let g:NERDToggleCheckAllLines = 1
 
 " ================================== vim-gitgutyter ====================================
 " \hp will preview hunk changes
-nmap ]g <Plug>(GitGutterNextHunk)
-nmap [g <Plug>(GitGutterPrevHunk)
+nmap ]d <Plug>(GitGutterNextHunk)
+nmap [d <Plug>(GitGutterPrevHunk)
 
 "========================================Airline=======================================
 let g:airline_powerline_fonts=1
@@ -261,7 +281,7 @@ let g:winresizer_keycode_up = 108
 
 " ====================================== undotree =================--==================
 " use `,u` to enter undotree. ? for help in window
-nnoremap <leader>u :UndotreeToggle<cr>
+nnoremap <leader>l :UndotreeToggle<cr>
 
 " ======================================== coc ========================================
 " Use tab for trigger completion with characters ahead and navigate.
@@ -287,10 +307,10 @@ nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> ds <Plug>(coc-definition)
+nmap <silent> ds <Plug>(coc-type-definition)
+nmap <silent> ds <Plug>(coc-implementation)
+nmap <silent> ds <Plug>(coc-references)
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)

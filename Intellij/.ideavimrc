@@ -1,0 +1,115 @@
+"set clipboard+=unnamed
+set clipboard+=ideaput
+nnoremap \e :e ~/.ideavimrc<CR>
+nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>Leader is comma"
+
+let mapleader=","   
+let maplocalleader=","
+map <leader>f :nohlsearch<CR>
+
+set wildignore+=*.a,*.o
+set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
+set wildignore+=.DS_Store,.git,.hg,.svn
+set wildignore+=.*.dfp,*.hdb,*.dpi,*.cdb,*.kpt
+
+"Remove octal so counting goes from 0-10 no 0-7
+set nrformats-=octal
+set clipboard=unnamedplus
+
+set softtabstop=2
+set tabstop=2
+set shiftwidth=2
+set noexpandtab
+set conceallevel=1
+set listchars=tab:\|\ 
+set list
+
+set incsearch
+set hlsearch
+
+set foldenable
+set foldlevelstart=10
+set foldnestmax=10
+set foldmethod=indent
+
+set cursorline
+hi CursorLine cterm=NONE ctermbg=234 ctermfg=NONE
+set lazyredraw
+set wildmenu
+set showmatch
+set matchpairs+=<:>
+set number
+set exrc 
+set secure
+set scrolloff=15
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v',100)
+set syntax
+syntax enable
+
+" $/^ doesn't do anything
+nnoremap $ <nop>
+nnoremap ^ <nop>
+vnoremap $ <nop>
+vnoremap ^ <nop>
+
+" Colmak "
+
+" move to beginning/end of line
+nnoremap B ^
+nnoremap F $
+vnoremap B ^
+vnoremap F $
+
+
+" Movement Keys are neio
+nnoremap n h|xnoremap n h|onoremap n h|vnoremap n h
+nnoremap e j|xnoremap e j|onoremap e j|vnoremap e j
+nnoremap i k|xnoremap i k|onoremap i k|vnoremap i k
+nnoremap o l|xnoremap o l|onoremap o l|vnoremap o l
+
+nnoremap <C-W>n <C-W>h|xnoremap <C-W>n <C-W>h
+nnoremap <C-W>e <C-W>j|xnoremap <C-W>e <C-W>j
+nnoremap <C-W>i <C-W>k|xnoremap <C-W>i <C-W>k
+nnoremap <C-W>o <C-W>l|xnoremap <C-W>o <C-W>l
+
+"" Make insert/add work also in visual line mode like in visual block mode
+xnoremap <silent> <expr> h (mode() =~# "[V]" ? "\<C-V>0o$I" : "I")
+xnoremap <silent> <expr> h (mode() =~# "[V]" ? "\<C-V>0o$I" : "I")
+
+noremap <C-e> ezz
+noremap <C-i> izz
+noremap <C-w>j <C-w>h
+noremap <C-w>k <C-w>j
+noremap <C-w>l <C-w>k
+noremap <C-w>; <C-w>l
+
+nmap <S-e> 3e
+nmap <S-i> 3i
+
+set incsearch
+nnoremap <c-/> :action FindInPath<CR>
+nnoremap <c-a> :action GotoAction<CR>
+nnoremap <c-f> :action GotoFile<CR>
+nnoremap <leader>u :action FindUsages<CR>
+nnoremap <leader>s :action GotoRelated<CR>
+nnoremap <leader>h :action CallHierarchy<CR>
+nnoremap <leader>b :action ShowNavBar<CR>
+nnoremap <c-s> :action FileStructurePopup<CR>
+nnoremap <c-o> :action GotoSymbol<CR>
+nnoremap gc :action GotoClass<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gd :action GotToDeclaration<CR>
+nnoremap gp :action GotToSuperMethod<CR>
+nnoremap gt :action GotoTest<CR>
+nnoremap gb :action Back<CR>
+nnoremap gf :action Forward<CR>
+
+nnoremap <leader>u :action Rerun<CR>
+
+nnoremap h i
+
+nnoremap k :action EditorStartNewLine<CR> i
+nnoremap K :action EditorStartNewLineBefore<CR> i
+
+"MOVEMENT END"
