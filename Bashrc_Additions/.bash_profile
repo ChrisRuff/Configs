@@ -1,2 +1,5 @@
-. ~/.bash_aliases
+if [ -f ~/.bashrc ];
+then 
+    .  ~/.bashrc; 
+fi 
 EDITOR="nvim"

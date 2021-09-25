@@ -1,3 +1,3 @@
-. ~/.bash_profile
+. ~/.bash_aliases
 export PROMPT_COMMAND="pwd > /tmp/whereami"
 export PS1="[\[$(tput sgr0)\]\[\033[38;5;85m\]\h\[$(tput sgr0)\]\[\033[38;5;15m\]@\[$(tput sgr0)\]\[\033[38;5;82m\]\u\[$(tput sgr0)\]\[\033[38;5;211m\] \w]\[\033[38;5;15m\]\\$ \[\033[38;5;83m\]\@\n>>> \[$(tput sgr0)\]"
