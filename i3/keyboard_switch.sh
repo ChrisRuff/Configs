@@ -15,4 +15,5 @@ else
 	\cp ${DIR}/NVim/col.vim ${DIR}/NVim/init.vim
 fi 
 i3-msg reload
+setxkbmap -option lv3:rwin_switch
 xmodmap ~/.Xmodmap

@@ -127,6 +127,8 @@ nnoremap <C-W>e <C-W>j|xnoremap <C-W>e <C-W>j|
 nnoremap <C-W>i <C-W>k|xnoremap <C-W>i <C-W>k|
 nnoremap <C-W>o <C-W>l|xnoremap <C-W>o <C-W>l|
 
+nnoremap [ N
+nnoremap ] n
 
 "MOVEMENT END"
 

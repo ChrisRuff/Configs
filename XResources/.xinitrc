@@ -62,4 +62,4 @@ get_session(){
 	echo "dbus-launch ${dbus_args[*]}"
 }
 
-exec $(get_session)
+exec i3 #$(get_session)
