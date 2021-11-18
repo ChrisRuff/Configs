@@ -1,3 +1,3 @@
 #!/bin/bash
 WHEREAMI="/tmp/whereami"
-kitty -d "$(cat $WHEREAMI)"
+kitty -d '(cat /tmp/whereami)'

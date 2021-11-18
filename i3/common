@@ -184,21 +184,30 @@ set $ws_spotify 10:
 set $ws_git 11:
 set $ws_steam 12:
 set $ws_learn 13:AI
+set $ws_miner 14:
 
 bindsym $mod+comma mode "ws2"
 mode "ws2" {
 	bindsym 1 workspace $ws_spotify; mode "default"
 	bindsym Ctrl+1 move container to workspace $ws_spotify; mode "default" 
 	bindsym Shift+1 move container to workspace $ws_spotify; workspace $ws_spotify; mode "default"
+
 	bindsym 2 workspace $ws_git; mode "default"
 	bindsym Ctrl+2 move container to workspace $ws_git; mode "default" 
 	bindsym Shift+2 move container to workspace $ws_git; workspace $ws_git; mode "default"
+
 	bindsym 3 workspace $ws_steam; mode "default"
 	bindsym Ctrl+3 move container to workspace $ws_steam; mode "default" 
 	bindsym Shift+3 move container to workspace $ws_steam; workspace $ws_steam; mode "default"
+
 	bindsym 4 workspace $ws_learn; mode "default"
 	bindsym Ctrl+4 move container to workspace $ws_learn; mode "default" 
 	bindsym Shift+4 move container to workspace $ws_learn; workspace $ws_learn; mode "default"
+
+	bindsym 5 workspace $ws_miner; mode "default"
+	bindsym Ctrl+5 move container to workspace $ws_miner; mode "default" 
+	bindsym Shift+5 move container to workspace $ws_miner; workspace $ws_miner; mode "default"
+
 	bindsym Escape mode "default"
 }
 
