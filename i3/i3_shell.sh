@@ -1,3 +1,3 @@
-#!/bin/bash
-WHEREAMI="/tmp/whereami"
-kitty -d '(cat /tmp/whereami)'
+#!/usr/bin/env fish
+set WHEREAMI "/tmp/whereami"
+kitty -d (cat $WHEREAMI)
