@@ -140,7 +140,7 @@ set $mon3 = HDMI-0
 
 workspace $ws1 output $mon1
 workspace $ws4 output $mon1
-workspace $ws2 output $mon2
+workspace $ws2 output $mon3
 workspace $ws3 output $mon3
 workspace $ws_discord output $mon1
 workspace $ws_steam output $mon2
@@ -243,6 +243,7 @@ for_window [class="Xfburn"] floating enable
 for_window [class="SysMan"] floating enable
 for_window [class="sysman"] floating enable
 for_window [class="display"] floating enable #Image magick
+for_window[class="project.Main"] floating eable; border none
 
 # Plasma compatibility improvements
 for_window [window_role="pop-up"] floating enable

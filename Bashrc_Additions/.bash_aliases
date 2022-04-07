@@ -18,6 +18,5 @@ alias gitc="find . -type f -size +100000k -exec ls -lh {} \; | awk '{ print \$9 
 
 alias sc="cd ~/Documents/Git_Repos/School/Winter2021/"
 
-alias status="neofetch"
-
+# Latex configuration
 alias ll="kitty -e latexmk -pdf -pvc"
