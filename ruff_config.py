@@ -4,8 +4,13 @@ import argparse
 
 packages = ["neovim", "neofetch", "kitty"]
 root = os.path.dirname(__file__)
+
+def print_header(title):
+    print("#########", title, "#########")
+
 def get_path(path):
     return os.path.join(root, path)
+
 def expand_home(path):
     return os.path.join(os.path.expanduser("~"), path)
 
@@ -18,11 +23,35 @@ def get_files(path):
             files.extend([os.path.join(file, x) for x in get_files(os.path.join(path, file))])
     return files
 
-def place_config(config_path, sys_path, overwrite=False, dry_run=False):
-    if os.path.exists(sys_path) and overwrite:
-        print("Removing", sys_path)
-        os.remove(sys_path)
+def check_for_mismatch(config_path, sys_path):
+    if not os.path.exists(sys_path):
+        return True
+    
+    with open(config_path, 'rb') as f1, open(sys_path, 'rb') as f2:
+        content1 = f1.read()
+        content2 = f2.read()
         
+    return content1 != content2
+
+def are_hardlinked(f1, f2):
+    if not (os.path.isfile(f1) and os.path.isfile(f2)):
+        return False
+    return os.path.samefile(f1, f2) or (os.stat(f1).st_ino == os.stat(f2).st_ino)
+
+def place_config(config_path, sys_path, overwrite=False, dry_run=False):
+    if os.path.exists(sys_path):
+        if not are_hardlinked(config_path, sys_path) and overwrite:
+            if check_for_mismatch(config_path, sys_path):
+                print_header("CONFIG MISMATCH")
+                print("Mismatch", config_path, "and", sys_path, ", please sync them and rerun this script")
+                return
+            print("Removing", sys_path)
+            if not dry_run:
+                os.remove(sys_path)
+        else:
+            print("Skipping", sys_path)
+            return
+
     print(config_path, "->", sys_path)
     if not dry_run:
         os.link(get_path(config_path), expand_home(sys_path))
@@ -35,8 +64,6 @@ def place_configs(config_path, sys_path, overwrite=False, dry_run=False):
                 os.path.join(sys_path,file)]
         place_config(dir[0], dir[1], overwrite, dry_run)
         
-def print_header(title):
-    print("#########", title, "#########")
 
 def download(dry_run=False):
     print_header("Downloading Packages")
@@ -84,7 +111,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Configure system settings and create symlinks')
     parser.add_argument('--overwrite', '-o', action='store_true', default=False,
                         help='Overwrite existing config files')
-    parser.add_argument('--download', '-d', action='store_true', default=True,
+    parser.add_argument('--download', '-d', action='store_true', default=False,
                         help='Download and install packages')
     parser.add_argument('--dry-run', '-n', action='store_true', default=False,
                         help='Do not create symlinks or download packages, just print what would be done')
