@@ -1,0 +1,81 @@
+// -*- mode: json -*-
+
+[{
+	"layer": "top",
+	"position": "bottom",
+    "output": ["HDMI-A-1", "HDMI-A-2"],
+    "include": [
+            "~/.config/waybar/default-modules.json"
+    ],
+	"modules-left": [
+        "hyprland/submap",
+		"hyprland/workspaces",
+		"custom/right-arrow-dark",
+		"custom/left-arrow-dark",
+        "hyprland/window",
+		"custom/right-arrow-dark"
+	],
+	"modules-center": [
+	],
+    "modules-right": [
+        "custom/left-arrow-dark",
+        "pulseaudio",
+		"custom/left-arrow-light",
+        "custom/left-arrow-dark",
+        "custom/storage-root",
+        "custom/storage-home",
+        "custom/storage-m85",
+        "custom/storage-games",
+		"custom/left-arrow-light",
+        "custom/left-arrow-dark",
+        "cpu",
+		"custom/left-arrow-light",
+        "custom/left-arrow-dark",
+        "memory",
+		"custom/left-arrow-light",
+        "custom/left-arrow-dark",
+        "custom/weather",
+        "custom/weather2",
+		"custom/left-arrow-light",
+        "custom/left-arrow-dark",
+        "custom/music",
+        "custom/musictoplaylist",
+		"custom/left-arrow-light",
+        "custom/left-arrow-dark",
+        "clock",
+		"custom/left-arrow-light",
+        "custom/left-arrow-dark",
+        "custom/kblayout",
+        "custom/vpn",
+		"custom/left-arrow-light",
+        "custom/left-arrow-dark",
+        "tray"
+    ]
+},{
+	"layer": "top",
+	"position": "bottom",
+    "output": "DP-1",
+    "include": [
+            "~/.config/waybar/default-modules.json"
+    ],
+	"modules-left": [
+        "hyprland/submap",
+		"hyprland/workspaces",
+		"custom/right-arrow-dark"
+	],
+	"modules-center": [
+	],
+    "modules-right": [
+        "custom/left-arrow-dark",
+        "pulseaudio",
+		"custom/left-arrow-light",
+        "custom/left-arrow-dark",
+        "cpu",
+		"custom/left-arrow-light",
+        "custom/left-arrow-dark",
+        "memory",
+		"custom/left-arrow-light",
+        "custom/left-arrow-dark",
+        "clock"
+    ]
+}]

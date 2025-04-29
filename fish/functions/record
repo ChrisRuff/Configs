@@ -1,0 +1,26 @@
+#!/usr/bin/env fish
+
+# Get the current date and time in a formatted string (e.g., 2024-12-09_14-30)
+set current_date (date "+%Y-%m-%d_%H-%M-%S")
+
+# Define input sources
+set mic "alsa_input.usb-HP__Inc_HyperX_Cloud_Alpha_Wireless_00000001-00.mono-fallback" # Replace with your microphone source if needed
+set system "alsa_output.usb-HP__Inc_HyperX_Cloud_Alpha_Wireless_00000001-00.analog-stereo.monitor" # Replace with your system sound source
+
+# Define output filename with the current date
+set output_file "recording_$current_date.mp3"
+
+set output_location "/home/chris/Nextcloud/Documents/Obsidian/Recordings/"
+
+# Run ffmpeg command
+ffmpeg -f pulse -i $mic -f pulse -i $system \
+-filter_complex "[0:a][1:a]amix=inputs=2:duration=longest" \
+-c:a libmp3lame $output_location/$output_file &
+
+set ffmpeg_pid (jobs -lp)
+
+# Launch Zenity with a floating stop button
+zenity --info --text "Recording... Click OK to stop." --ok-label "Stop"
+
+# Stop the recording when the button is pressed
+kill $ffmpeg_pid

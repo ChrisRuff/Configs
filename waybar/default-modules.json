@@ -1,0 +1,146 @@
+{
+	"custom/left-arrow-dark": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/left-arrow-light": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/right-arrow-dark": {
+		"format": "",
+		"tooltip": false
+	},
+	"custom/right-arrow-light": {
+		"format": "",
+		"tooltip": false
+	},
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "9": "",
+            "10": "",
+            "11": "",
+            "12": "",
+            "13": "",
+            "14": "",
+            "15": "AI"
+        },
+        "show-special": true,
+    },
+	"clock": {
+		"format": "{:%m.%d %H:%M}",
+		"tooltip-format": "{:%H:%M:%S}",
+		"tooltip": true,
+        "interval": 5
+	},
+	"memory": {
+		"interval": 5,
+		"format": " {used:0.1f}G / {total:0.1f}G",
+        "states": {
+            "warning": 60,
+            "critical": 80
+        }
+	},
+    "pulseaudio": {
+		"format": "{icon}  {volume}%",
+		"format-bluetooth": "{icon} {volume}%",
+		"format-muted": "",
+		"format-icons": {
+			"headphone": "",
+			"hands-free": "",
+			"headset": "",
+			"phone": "",
+			"portable": "",
+			"car": "",
+			"default": ["", ""]
+		},
+		"scroll-step": 1,
+        "on-click": "pavucontrol",
+		"on-click-right": "~/.config/waybar/modules/pavu.sh", 
+		"tooltip": true
+	},
+	"cpu": {
+		"interval": 5,
+		"format": "CPU {usage:2}%",
+        "states": {
+            "warning": 70,
+            "critical": 90
+        }
+	},
+    "custom/weather": {
+        "format": "{}°",
+        "interval": 14400,
+        "exec": "wttrbar --location Boston",
+        "return-type": "json",
+        "tooltip": true
+    },
+    "custom/weather2": {
+        "format": "{}°",
+        "interval": 14400,
+        "exec": "wttrbar --fahrenheit --location Boston",
+        "return-type": "json",
+        "tooltip": true
+    },
+    "custom/music": {
+        "format": "{}",
+        "interval": 5,
+        "signal": 4,
+        "return-type": "json",
+		"tooltip": true,
+        "exec": "~/.config/waybar/modules/music.sh",
+        "escape": true
+    },
+    "custom/musictoplaylist": {
+        "format": "{}",
+        "signal": 5,
+        "return-type": "json",
+        "on-click": "source ~/.config/waybar/modules/playlist.sh; add_to_playlist",
+        "exec": "source ~/.config/waybar/modules/playlist.sh; is_in_playlist",
+        "exec-on-event": true,
+        "escape": true
+    },
+    "custom/kblayout": {
+        "format": "{}",
+        "signal": 6,
+        "return-type": "json",
+        "exec": "~/.config/waybar/modules/keyboard_query.sh",
+    },
+    "custom/vpn": {
+        "format": "{}",
+        "signal": 7,
+        "return-type": "json",
+        "exec": "~/.config/waybar/modules/vpn_query.sh",
+    },
+    "custom/storage-root": {
+        "exec": "~/.config/waybar/modules/storage.sh /",
+        "interval": 30,
+        "format": "{}",
+        "return-type": "json",
+    },
+    "custom/storage-home": {
+        "exec": "~/.config/waybar/modules/storage.sh /home",
+        "interval": 30,
+        "format": "{}",
+        "return-type": "json",
+    },
+    "custom/storage-m85": {
+        "exec": "~/.config/waybar/modules/storage.sh /home/chris/M85",
+        "interval": 30,
+        "format": "{}",
+        "return-type": "json",
+    },
+    "custom/storage-games": {
+        "exec": "~/.config/waybar/modules/storage.sh /home/games",
+        "interval": 30,
+        "format": "{}",
+        "return-type": "json",
+    },
+	"tray": {
+		"icon-size": 20
+	}
+}

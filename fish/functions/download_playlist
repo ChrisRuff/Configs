@@ -1,0 +1,42 @@
+#!/usr/bin/env fish
+
+# Check if a playlist URL was provided
+
+if test -z "$argv[1]" -o -z "$argv[2]"
+    echo "Usage: download_playlist <collection-name> <YouTube-playlist-URL>"
+    return 1
+end
+
+set collection_name $argv[1]
+set playlist_url $argv[2]
+set download_dir "/tmp/youtube_download/$collection_name"
+set music_library "/mnt/media/torrents/other/$collection_name"
+
+# Create download directory if it doesn't exist
+mkdir -p $download_dir
+cd $download_dir
+
+echo "Downloading playlist from $playlist_url..."
+
+# Download with yt-dlp, audio only, with metadata
+yt-dlp -x --audio-format mp3 --extract-audio --audio-quality 0 \
+    $playlist_url
+    
+echo "Download complete! Processing with MusicBrainz Picard..."
+
+# Process with MusicBrainz Picard
+# Note: This opens Picard GUI, which requires manual interaction
+picard $download_dir/*
+
+# Wait for Picard to finish processing
+#read -P "Press Enter when Picard has finished processing the files..."
+
+# Move files to the music library
+echo "Moving processed files to $music_library..."
+mkdir -p $music_library
+mv $download_dir/*.mp3 $music_library/
+
+echo "Process complete. Your music is now in $music_library"
+
+# Clean up
+rip $download_dir

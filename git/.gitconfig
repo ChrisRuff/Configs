@@ -1,0 +1,10 @@
+[user]
+	email = ChrisRuff@live.ca
+	name = Chris
+	signingKey = null
+[gpg]
+	program = null
+[commit]
+	gpgSign = null
+[tag]
+	forceSignAnnotated = null

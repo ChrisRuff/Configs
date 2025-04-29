@@ -1,0 +1,49 @@
+#!/usr/bin/env fish
+
+# Check if the correct number of arguments is provided
+if test (count $argv) -ne 2
+    echo "Usage: trim_audio.fish <audio_file> <seconds_to_remove>"
+    exit 1
+end
+
+# Assign arguments to variables
+set FILE $argv[1]
+set SECONDS_TO_REMOVE $argv[2]
+
+# Extract total duration of the file
+set TOTAL_SECONDS (ffmpeg -i "$FILE" 2>&1 | grep "Duration" | awk '{print $2}' | tr -d , | awk -F: '{print ($1 * 3600) + ($2 * 60) + $3}')
+
+# Calculate the new duration
+set NEW_DURATION (math "$TOTAL_SECONDS - $SECONDS_TO_REMOVE")
+echo "New duration: $NEW_DURATION seconds"
+
+# Check if the new duration is valid
+if test $NEW_DURATION -le 0
+    echo "Error: The number of seconds to remove is greater than or equal to the file's total duration."
+    exit 1
+end
+
+# Perform the trimming
+set TEMP_FILE "trimmed_$FILE"
+rm $TEMP_FILE
+ffmpeg -i "$FILE" -t $NEW_DURATION -c copy "$TEMP_FILE"
+
+echo "Trimmed file saved as: $TEMP_FILE"
+
+# Prompt to replace the original file
+echo "Do you want to replace the original file? [Y/n]: "
+read -l USER_INPUT
+
+if test -z "$USER_INPUT"
+    set USER_INPUT "Y"
+end
+# Check user input and handle file replacement
+switch "$USER_INPUT"
+    case Y y
+        mv "$TEMP_FILE" "$FILE"
+        echo "Original file replaced."
+    case N n
+        echo "Original file kept. Trimmed file is saved as: $TEMP_FILE"
+    case '*'
+        echo "Invalid input. Original file kept. Trimmed file is saved as: $TEMP_FILE"
+end

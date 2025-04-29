@@ -1,0 +1,98 @@
+@import "mocha.css";
+* {
+	font-size: 10px;
+    font-family: "Droid Sans Mono";
+    min-height: 0;
+}
+
+window#waybar {
+	background-color: shade(@base, 1.0);
+    border: 1px solid alpha(@mantle, 0.3);
+    color: @text;
+}
+#custom-right-arrow-dark,
+#custom-left-arrow-dark,
+#custom-right-arrow-light,
+#custom-left-arrow-light {
+	font-size: 16px;
+}
+
+#custom-right-arrow-dark,
+#custom-left-arrow-dark {
+	color: @crust;
+	background: @base;
+}
+#custom-right-arrow-light,
+#custom-left-arrow-light {
+	color: @base;
+	background: @crust;
+}
+
+#workspaces {
+	background: @crust;
+    background-color: @crust;
+    padding-left: 2px;
+}
+
+#workspaces button {
+	padding: 0 0px;
+}
+#workspaces button.active {
+	color: @sapphire;
+    border: 1px solid @surface1;
+}
+
+#window,
+#clock,
+#cpu, 
+#tray,
+#memory,
+#pulseaudio,
+#custom-weather,
+#custom-weather2,
+#custom-music,
+#custom-musictoplaylist,
+#custom-kblayout,
+#custom-vpn,
+#submap
+{
+	background: @crust;
+	color: @text;
+	padding: 0 8px;
+}
+#custom-musictoplaylist{
+    font-size: 16px;
+}
+#memory.warning, #cpu.warning {
+    color: yellow;
+}
+#memory.critical, #cpu.critical {
+    color: red;
+}
+#custom-storage-root,
+#custom-storage-home,
+#custom-storage-m85,
+#custom-storage-games
+{
+	background: @crust;
+	color: @text;
+	padding: 0 1px;
+}
+#custom-storage-root.critical, #custom-storage-home.critical, #custom-storage-m85.critical, #custom-storage-games.critical {
+    color: #FF0000;
+}
+#custom-storage-root.high, #custom-storage-home.high, #custom-storage-m85.high, #custom-storage-games.high {
+    color: #FF4500;
+}
+#custom-storage-root.elevated, #custom-storage-home.elevated, #custom-storage-m85.elevated, #custom-storage-games.elevated {
+    color: #FFA500;
+}
+#custom-storage-root.normal, #custom-storage-home.normal, #custom-storage-m85.normal, #custom-storage-games.normal {
+    color: #FFD700;
+}
+#custom-storage-root.low, #custom-storage-home.low, #custom-storage-m85.low, #custom-storage-games.low {
+    color: #ADFF2F;
+}
+#custom-storage-root.minimal, #custom-storage-home.minimal, #custom-storage-m85.minimal, #custom-storage-games.minimal {
+    color: #00FF00;
+}

@@ -8,14 +8,11 @@ set $mod Mod4
 # workspace_layout tabbed <stacking|tabbed>
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border pixel 0
+default_border pixel 1
 default_floating_border normal
 gaps inner 20
 gaps outer 15
 smart_gaps on
-
-# Hide borders
-hide_edge_borders none
 
 # change borders
 bindsym $mod+u border none
@@ -47,7 +44,8 @@ bindsym $mod+z exec --no-startup-id morc_menu
 ################################################################################################
 
 exec --no-startup-id volumeicon
-exec --no-startup-id xset r rate 250 30
+exec_always --no-startup-id xset r rate 190 35
+
 bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 #exec --no-startup-id pulseaudio
 #exec --no-startup-id pa-applet
@@ -61,10 +59,10 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-bindsym $mod+F2 exec google-chrome-stable
+bindsym $mod+F2 exec firefox
 bindsym $mod+F3 exec kitty -e 'ranger'
 # bindsym $mod+F3 exec ranger
-bindsym $mod+Shift+F3 exec pcmanfm_pkexec
+bindsym $mod+Shift+F3 exec pcmanfm
 bindsym $mod+t exec --no-startup-id pkill compton
 bindsym $mod+Ctrl+t exec --no-startup-id compton -b
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
@@ -73,10 +71,13 @@ bindsym $mod+Shift+Print --release exec --no-startup-id peek
 bindsym $mod+Shift+m exec xdg-open /usr/share/doc/manjaro/i3_help.pdf
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
-bindsym XF86AudioPrev  exec ~/.config/i3/spotify_control.sh previous  &>> /tmp/out
-bindsym XF86AudioPlay  exec ~/.config/i3/spotify_control.sh playpause &>> /tmp/out
-bindsym XF86AudioPause exec ~/.config/i3/spotify_control.sh playpause &>> /tmp/out
-bindsym XF86AudioNext  exec ~/.config/i3/spotify_control.sh next      &>> /tmp/out
+bindsym XF86AudioPrev  exec playerctl --player=Feishin previous   &>> /tmp/out
+bindsym XF86AudioPlay  exec playerctl --player=Feishin play-pause &>> /tmp/out
+bindsym XF86AudioPause exec playerctl --player=Feishin play-pause &>> /tmp/out
+bindsym XF86AudioNext  exec playerctl --player=Feishin next       &>> /tmp/out
+bindsym $mod+F8 exec playerctl --player=firefox play-pause &>> /tmp/out
+
+bindsym XF86Tools exec playerctl --player=spotify play-pause 
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"
 bindsym XF86AudioLowerVolume exec --no-startup-id qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "decrease_volume"
@@ -140,11 +141,12 @@ set $mon3 = HDMI-0
 
 workspace $ws1 output $mon1
 workspace $ws4 output $mon1
-workspace $ws2 output $mon3
+workspace $ws2 output $mon2
 workspace $ws3 output $mon3
 workspace $ws_discord output $mon1
 workspace $ws_steam output $mon2
 workspace $ws_spotify output $mon3
+workspace $ws_thunder output $mon1
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -184,7 +186,9 @@ set $ws_spotify 10:
 set $ws_git 11:
 set $ws_steam 12:
 set $ws_learn 13:AI
-set $ws_miner 14:
+set $ws_miner 14:U
+set $ws_obsidian 15:
+set $ws_thunder 16:
 
 bindsym $mod+comma mode "ws2"
 mode "ws2" {
@@ -207,6 +211,14 @@ mode "ws2" {
 	bindsym 5 workspace $ws_miner; mode "default"
 	bindsym Ctrl+5 move container to workspace $ws_miner; mode "default" 
 	bindsym Shift+5 move container to workspace $ws_miner; workspace $ws_miner; mode "default"
+
+  bindsym o workspace $ws_obsidian; mode "default"
+  bindsym Ctrl+o move container to workspace $ws_obsidian; mode "default"
+  bindsym Shift+o move container to workspace $ws_obsidian; workspace $ws_obsidian; mode "default"
+
+  bindsym e workspace $ws_thunder; mode "default"
+  bindsym Ctrl+e move container to workspace $ws_thunder; mode "default"
+  bindsym Shift+e move container to workspace $ws_thunder; workspace $ws_thunder; mode "default"
 
 	bindsym Escape mode "default"
 }
@@ -243,7 +255,13 @@ for_window [class="Xfburn"] floating enable
 for_window [class="SysMan"] floating enable
 for_window [class="sysman"] floating enable
 for_window [class="display"] floating enable #Image magick
-for_window[class="project.Main"] floating eable; border none
+for_window [class="project.Main"] floating enable; border none
+for_window [class="UnrealEditor"] floating enable
+
+# M85 stuff
+for_window [title="Measurements"] floating enable
+for_window [title="Add Feature"] floating enable
+for_window [title="Crack Stitcher"] floating enable
 
 # Plasma compatibility improvements
 for_window [window_role="pop-up"] floating enable
@@ -284,6 +302,7 @@ mode "$mode_system" {
     bindsym h exec --no-startup-id i3exit hibernate, mode "default"
     bindsym r exec --no-startup-id i3exit reboot, mode "default"
     bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+    bindsym k exec --no-startup-id i3-msg exit 
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
@@ -422,40 +441,54 @@ mode "$mode_gaps_outer" {
 bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
 
+# Turn off display
+bindsym $mod+Ctrl+space exec sleep 1 && xset dpms force off
 
 for_window [instance="ranger"] move window to workspace $ws4
 for_window [instance="vifm"] move window to workspace $ws4
 for_window [class="Pcmanfm"] move window to workspace $ws4
 for_window [class="Spotify"] move window to workspace $ws_spotify
+for_window [class="feishin"] move window to workspace $ws_spotify
 for_window [class="discord"] move window to workspace $ws_discord
+for_window [class="vesktop"] move window to workspace $ws_discord
 for_window [class="GitKraken"] move window to workspace $ws_git
-for_window [class="Steam"] move window to workspace $ws_steam
+for_window [class="steam"] move window to workspace $ws_steam
+for_window [class="obsidian"] move window to workspace $ws_obsidian
+for_window [class="thunderbird"] move window to workspace $ws_thunder
 
 # Open applications on specific workspaces
 assign [class="google-chrome"] $ws3
+assign [class="firefox"] $ws3
 assign [instance="vifm"] $ws4
 assign [class="Pcmanfm"] $ws4
 assign [instance="ranger"] $ws4
 assign [class="GitKraken"] $ws_git
 assign [class="Spotify"] $ws_spotify
+assign [class="feishin"] $ws_spotify
 assign [class="discord"] $ws_discord
-assign [class="Steam"] $ws_steam
+assign [class="vesktop"] $ws_discord
+assign [class="steam"] $ws_steam
+assign [class="obsidian"] $ws_obsidian
+assign [class="thunderbird"] $ws_thunder
+
+# Remove top bar
+default_floating_border pixel 0
 
 # Default programs
-exec /usr/bin/redshift
-exec --no-startup-id i3-msg 'workspace $ws3; exec google-chrome-stable'
-exec terminal
-exec /usr/bin/spotify
-exec /usr/bin/discord
+#exec /usr/bin/redshift
+#exec --no-startup-id i3-msg 'workspace $ws3; exec firefox'
+#exec terminal
+#exec /usr/bin/feishin
+#exec /opt/discord/Discord
+#exec /usr/bin/obsidian
+#exec /usr/bin/thunderbird
+#exec /usr/bin/playerctld
+
+# Set monitors
+exec_always ~/.screenlayout/Boston.sh
 
 # Set background
 exec_always feh --bg-scale ~/Pictures/background.png
-exec_always --no-startup-id picom -bc
-
-# Set monitors
-exec_always ~/.screenlayout/Freddy.sh
-
-
 # change focus
 bindsym $mod+n focus left
 bindsym $mod+e focus down

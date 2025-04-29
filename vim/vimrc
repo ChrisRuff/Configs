@@ -1,0 +1,247 @@
+" All system-wide defaults are set in $VIMRUNTIME/archlinux.vim (usually just
+" /usr/share/vim/vimfiles/archlinux.vim) and sourced by the call to :runtime
+" you can find below.  If you wish to change any of those settings, you should
+" do it in this file (/etc/vimrc), since archlinux.vim will be overwritten
+" everytime an upgrade of the vim packages is performed.  It is recommended to
+" make changes after sourcing archlinux.vim since it alters the value of the
+" 'compatible' option.
+
+" This line should not be removed as it ensures that various options are
+" properly set to work with the Vim-related packages.
+runtime! archlinux.vim
+set nocompatible
+filetype off
+
+"Leader is comma"'
+let mapleader=","   
+let maplocalleader=","
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'tpope/vim-fugitive'
+Plugin 'DoxygenToolkit.vim'
+Plugin 'ycm-core/YouCompleteMe'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'dense-analysis/ale'
+Plugin 'fedorenchik/qt-support.vim'
+Plugin 'vim-scripts/taglist.vim'
+Plugin 'rking/ag.vim'
+Plugin 'gavinbeatty/dragvisuals.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'preservim/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'simeji/winresizer'
+Plugin 'floobits/floobits-neovim'
+Plugin 'sjl/gundo.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'rafi/awesome-vim-colorschemes'
+Plugin 'troydm/zoomwintab.vim'
+Plugin 'apalmer1377/factorus'
+Plugin 'triglav/vim-visual-increment'
+Plugin 'lervag/vimtex'
+
+let g:DoxygenToolkit_enhanced_color=1
+let g:DoxygenToolkit_briefTag_pre="@Synopsis  "
+let g:DoxygenToolkit_paramTag_pre="@Param "
+let g:DoxygenToolkit_returnTag="@Returns   "
+let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------"
+let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------"
+let g:DoxygenToolkit_authorName="Chris Ruff"
+
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '#>'
+nmap <silent> [c <Plug>(ale_previous_wrap)
+nmap <silent> ]c <Plug>(ale_next_wrap)
+let b:ale_linters = ['flake8', 'pylint', 'gcc', 'clang']
+
+
+let g:DVB_TrimWS = 1 
+
+runtime plugin/dragvisuals.vim
+vmap  <expr> <LEFT> DVB_Drag('left')
+vmap  <expr> <RIGHT> DVB_Drag('right')
+vmap  <expr> <DOWN> DVB_Drag('down')
+vmap  <expr> <UP> DVB_Drag('up')
+vmap  <expr> D DVB_Duplicate() 
+
+" CtrlP settings
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+let g:ctrlp_prompt_mappings = {
+  \ 'PrtSelectMove("k")':   ['<c-l>', '<up>'],
+	\ 'PrtCurRight()' : ['<c-;>', '<right>'],
+	\ 'PrtCurLeft()' : ['<c-j>', '<left>'],
+	\ 'PrtSelectMove("j")': ['<c-k>', '<down>'],
+	\ }
+
+"NerdTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = ""
+let g:NERDTreeDirArrowCollapsible = ""
+let g:NERDTreeIgnore=['CMakeFiles[[dir]]']
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "*",
+    \ "Staged"    : "+",
+    \ "Untracked" : "^",
+    \ "Renamed"   : "-",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : 'X',
+    \ "Unknown"   : "?"
+    \ }
+nnoremap <Leader>z :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>v :NERDTreeFind<CR>
+
+let g:winresizer_keycode_left = 106
+let g:winresizer_keycode_right = 59
+let g:winresizer_keycode_down = 107
+let g:winresizer_keycode_up = 108
+
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline_theme = 'afterglow'
+
+let g:Tlist_WinWidth=60
+
+call vundle#end()
+
+filetype plugin indent on
+
+colorscheme OceanicNext
+set wildignore+=*.a,*.o
+set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png
+set wildignore+=.DS_Store,.git,.hg,.svn
+set wildignore+=.*.dfp,*.hdb,*.dpi,*.cdb,*.kpt
+
+"Remove octal so counting goes from 0-10 no 0-7
+set nrformats-=octal
+set clipboard=unnamedplus
+
+set softtabstop=2
+set tabstop=2
+set shiftwidth=2
+set noexpandtab
+set conceallevel=1
+set listchars=tab:\|\ 
+set list
+
+set incsearch
+set hlsearch
+
+set foldenable
+set foldlevelstart=10
+set foldnestmax=10
+set foldmethod=indent
+
+set cursorline
+hi CursorLine cterm=NONE ctermbg=234 ctermfg=NONE
+set lazyredraw
+set wildmenu
+set showmatch
+set matchpairs+=<:>
+set number
+set exrc 
+set secure
+set scrolloff=15
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v',100)
+set syntax
+syntax enable
+" move the navigation keys one to the right to line up with traditional touch
+" typing
+"MOVEMENT START"
+nnoremap j h
+nnoremap k j
+nnoremap l k
+nnoremap ; l
+
+" move to beginning/end of line
+nnoremap B ^
+nnoremap E $
+vnoremap B ^
+vnoremap E $
+
+" $/^ doesn't do anything
+nnoremap $ <nop>
+nnoremap ^ <nop>
+vnoremap $ <nop>
+vnoremap ^ <nop>
+"shifting move keys over one"
+map h <nop>
+vnoremap j h
+vnoremap k j
+vnoremap l k
+vnoremap ; l
+nnoremap <C-k> jzz
+nnoremap <C-l> kzz
+noremap <C-w>j <C-w>h
+noremap <C-w>k <C-w>j
+noremap <C-w>l <C-w>k
+noremap <C-w>; <C-w>l
+
+nnoremap <S-k> 3j
+nnoremap <S-l> 3k
+"MOVEMENT END"
+
+" Auto complete braces
+inoremap <expr>( strpart(getline('.'), col('.')-1, 1) == "" ? "()\<left>" : "("
+inoremap <expr>{ strpart(getline('.'), col('.')-1, 1) == "" ? "{}\<left>" : "{"
+inoremap <expr>[ strpart(getline('.'), col('.')-1, 1) == "" ? "[]\<left>" : "["
+
+inoremap {<CR> {<CR>}<ESC>O
+inoremap <expr> ) strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
+inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : strpart(getline('.'), col('.')-1, 1) == "" ? "\"\"<left>" : "\""
+inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\'" ? "\<Right>" : strpart(getline('.'), col('.')-1, 1) == "" ? "\'\'<left>" : "\'"
+inoremap <expr> } strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
+inoremap <expr> ] strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
+inoremap <expr> > strpart(getline('.'), col('.')-1, 1) == ">" ? "\<Right>" : ">"
+
+" turn off search highlight
+map <leader>f :nohlsearch<CR>
+nnoremap <space> za
+
+" highlight last inserted text
+nnoremap gV `[v`]
+
+"PLUGINS"
+""nnoremap <leader><Tab> :IndentLinesToggle<CR>
+
+nnoremap <leader>u :GundoToggle<CR>
+nnoremap <leader>l :CtrlPLine<CR>
+nnoremap <leader>t :Tlist<CR>
+
+nnoremap <leader>m :Ag 
+
+"GIT"
+nnoremap <leader>g :G<CR>
+nnoremap <leader>c :Gcommit<CR>
+nnoremap <leader><C-p> :Gpush<CR>
+nnoremap <leader>A :Gwrite<CR>
+
+
+function! SetupPython()
+    " Here, you can have the final say on what is set.  So
+    " fixup any settings you don't like.
+    setlocal softtabstop=2
+    setlocal tabstop=2
+    setlocal shiftwidth=2
+endfunction
+command! -bar SetupPython call SetupPython()
+"autocmd FileType python SetupPython
+"
+" do not load defaults if ~/.vimrc is missing
+"let skip_defaults_vim=1

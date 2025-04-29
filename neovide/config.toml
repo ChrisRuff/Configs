@@ -1,0 +1,8 @@
+fork = false
+idle = true
+tabs = true
+title-hidden = true
+
+[font]
+normal = ["GohuFont 14 Nerd Font"]
+size = 10.5
