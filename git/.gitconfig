@@ -4,7 +4,5 @@
 	signingKey = null
 [gpg]
 	program = null
-[commit]
-	gpgSign = null
 [tag]
 	forceSignAnnotated = null
