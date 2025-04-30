@@ -260,11 +260,6 @@
         "when": "!terminalFocusInAny"
     },
     {
-        "key": "alt+t",
-        "command": "workbench.action.focusFirstEditorGroup",
-        "when": "terminalFocusInAny"
-    },
-    {
         "key": "alt+n",
         "command": "workbench.action.terminal.new",
         "when": "terminalFocusInAny"
